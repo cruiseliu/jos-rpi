@@ -13,8 +13,38 @@ namespace Graphic {
     static const Color background_color = black;
     static const Color foreground_color = gray;
 
+    // Set the framebuffer up. The function will stuck if it fails,
+    // and you will see the 4-color gradient screen.
     void init();
+
+    // Paint a character at the given *text* row and column,
+    // using given color (or foreground_color by default).
     void paint_char(int row, int column, uint8_t ch, Color color = foreground_color);
+
+    // Clear a character, similar to paint_char.
+    void clear_char(int row, int column, Color color = background_color);
+
+    // Paint a cursor at given text row and column.
+    static inline void paint_cursor(int row, int column)
+    {
+        clear_char(row, column, foreground_color);
+    }
+
+    // Scroll the screen up by one line of text.
+    void scroll_up();
+
+    /**
+     * Screen Settings
+     *
+     * The width and height are hard-coded. Maybe we can detect it by some way, but
+     * let's make it simple. The color depth is 32 bits with alpha disabled in
+     * config.txt. We do not use 24 bit because the GPU reads framebuffer byte by
+     * byte, so we can't use a simple data type to represents a 24 bit pixel.
+     */
+    static const int width  = 1024;
+    static const int height = 768;
+    // don't forget to modify Color type and Framebuffer struct if you change this
+    static const int depth  = 32;
 
     /**
      * Font
@@ -27,6 +57,7 @@ namespace Graphic {
     static const int font_width = 8;
     static const int font_height = 13;
     static const int line_space = 3;
+    static const int line_height = font_height + line_space;
 
     // The last character available in the font, it should be non-printable.
     static const int font_last_char = 127;
@@ -40,7 +71,4 @@ namespace Graphic {
 
     // in logo.cpp
     extern const Color logo[logo_height][logo_width];
-
-    // The row number of first text line
-    static const int first_text_row = logo_height / (font_height + line_space) + 1;
 }

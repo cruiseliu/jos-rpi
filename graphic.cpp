@@ -14,41 +14,28 @@
  */
 
 /**
- * Screen Settings
- *
- * The width and height are hard-coded. Maybe we can detect it by some way, but
- * let's make it simple. The color depth is 32 bits with alpha disabled in
- * config.txt. We do not use 24 bit because the GPU reads framebuffer byte by
- * byte, so we can't use a simple data type to represents a 24 bit pixel.
- */
-static const int width  = 1024;
-static const int height = 768;
-// don't forget to modify Color type and Framebuffer struct if you change this
-static const int depth  = 32;
-
-/**
  * Mailbox
  *
  * The CPU communicates with GPU using mailbox.
  * See [1] for details.
  */
 namespace Mailbox {
-    static const uint32_t base_addr = 0x2000b880;
+    static const Addr base_addr = 0x2000b880;
 
     // The port to receive message
-    static const uint32_t read_port   = base_addr + 0x00;
+    static const Addr read_port   = base_addr + 0x00;
     // The port to check status
-    static const uint32_t status_port = base_addr + 0x18;
+    static const Addr status_port = base_addr + 0x18;
     // The port to send message
-    static const uint32_t write_port  = base_addr + 0x20;
+    static const Addr write_port  = base_addr + 0x20;
 
     // This bit indicating the mailbox is empty
-    static const uint32_t empty = 1 << 30;
+    static const Bitset empty = 1 << 30;
     // This bit indicating the mailbox is full
-    static const uint32_t full  = 1 << 31;
+    static const Bitset full  = 1 << 31;
 
     // The last 3 bits of a "mail" is the channel
-    static const uint32_t channel_mask = 0xf;
+    static const Bitset channel_mask = 0xf;
     // Thus only 15 channels are available
     static const int max_channel = 15;
 
@@ -115,21 +102,19 @@ namespace Graphic {
     static const int gpu_mailbox = 1;
     // Set the 30th bit to flush screen, said by [2]
     // TODO: What will happen if we use a high address for the kernel?
-    static const uint32_t gpu_flush = 0x40000000;
+    static const Bitset gpu_flush = 0x40000000;
 
     static inline void paint_logo();
 
-    // Set the framebuffer up. The function will stuck if it fails,
-    // and you will see the 4-color gradient screen.
     void init()
     {
-        // Set framebuffer informations.
+        // Configure framebuffer
         fb.pw = fb.vw = width;
         fb.ph = fb.vh = height;
         fb.depth = depth;
 
         // Send it to GPU
-        Mailbox::send(gpu_mailbox, (uint32_t)&fb | gpu_flush);
+        Mailbox::send(gpu_mailbox, (Bitset)&fb | gpu_flush);
 
         // [2] says GPU returns 0 on success, but [1] doesn't agree.
         // I chose to believe [2], it seems to work out fine.
@@ -139,28 +124,15 @@ namespace Graphic {
         paint_logo();
     }
 
+    static inline Color get_pixel(int row, int col)
+    {
+        return fb.pixels[row * width + col];
+    }
+
     // Set the pixel at (row,col) to given color.
     static inline void set_pixel(int row, int col, Color color)
     {
-        fb.pixels[row * fb.vw + col] = color;
-    }
-
-    // Paint a character at the given *text* row and column,
-    // using given color (or foreground_color by default).
-    void paint_char(int row, int col, uint8_t ch, Color color)
-    {
-        // Assume font_last_char is not printable,
-        // set any character with a greator ASCII code to it.
-        if (ch > font_last_char) ch = font_last_char;
-
-        // calculate the pixel position
-        row = row * (font_height + line_space) + line_space;
-        col = col * font_width;
-
-        // paint the character
-        for (int i = 0; i < font_height; ++i)
-            for (int j = 0; j < font_width; ++j)
-                set_pixel(row + i, col + j, (font[ch][i] >> j) & 1 ? color : background_color);
+        fb.pixels[row * width + col] = color;
     }
 
     // Paint the logo.
@@ -169,5 +141,44 @@ namespace Graphic {
         for (int i = 0; i < logo_height; ++i)
             for (int j = 0; j < logo_width; ++j)
                 set_pixel(i, j, logo[i][j]);
+    }
+
+    void paint_char(int row, int col, uint8_t ch, Color color)
+    {
+        // Assume font_last_char is not printable,
+        // set any character with a greator ASCII code to it.
+        if (ch > font_last_char) ch = font_last_char;
+
+        // calculate the pixel position
+        row = row * line_height + line_space;
+        col = col * font_width;
+
+        // paint the character
+        for (int i = 0; i < font_height; ++i)
+            for (int j = 0; j < font_width; ++j)
+                set_pixel(row + i, col + j, (font[ch][i] >> j) & 1 ? color : background_color);
+    }
+
+    void clear_char(int row, int col, Color color)
+    {
+        row = row * line_height + line_space;
+        col = col * font_width;
+        
+        for (int i = 0; i < font_height; ++i)
+            for (int j = 0; j < font_width; ++j)
+                set_pixel(row + i, col + j, color);
+    }
+
+    void scroll_up()
+    {
+        // TODO: use memmove and memset
+        // move each pixel line_height up
+        for (int i = 0; i < height - line_height; ++i)
+            for (int j = 0; j < width; ++j)
+                set_pixel(i, j, get_pixel(i + line_height, j));
+        // fill the last line
+        for (int i = height - line_height; i < height; ++i)
+            for (int j = 0; j < width; ++j)
+                set_pixel(i, j, background_color);
     }
 }

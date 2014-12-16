@@ -1,10 +1,10 @@
 JOS-RPi
--------
+=======
 
 Port of MIT JOS to Raspberry Pi.
 
 Usage
-=====
+-----
 
 Use `mkdir build && make` to build.
 
@@ -15,20 +15,21 @@ If you have a Raspberry Pi with RASPBIAN, copy `kernel.img` to the boot partitio
 If you prefer an emulator such as [QEMU](https://github.com/Torlus/qemu/tree/rpi), just load `kernel.elf`.
 
 Roadmap
-=======
+-------
 
   * ~~Bootloader~~
   * ~~Framebuffer~~
   * ~~Text ouput~~
+  * ~~Console output~~
   * Keyboard input
-  * Console
+  * Console input
   * Fromatted strings
   * Kernel shell
   * Backtrace
   * ......
 
 TODO
-====
+----
 
   * Write a better makefile
   * Put source files into subdirectories
@@ -36,7 +37,7 @@ TODO
   * Generate documantation
 
 References
-==========
+----------
 
  1. [MIT JOS](http://pdosnew.csail.mit.edu/6.828/2014/)
  2. [OSDev tutorial](http://wiki.osdev.org/ARM_RaspberryPi_Tutorial_C) (UART I/O)

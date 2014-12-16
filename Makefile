@@ -6,15 +6,15 @@ GCCFLAGS = -c -mcpu=arm1176jzf-s -fno-builtin -fno-exceptions -fno-rtti -std=gnu
 
 LDFLAGS = --nostdlib --no-undefined -O2
 
-OBJECTS = $(addprefix $(BUILD),entry.o init.o graphic.o font.o logo.o)
+OBJECTS = $(addprefix $(BUILD),boot.o main.o graphic.o font.o logo.o console.o)
 
 .PHONY: all
 all: $(OBJECTS) kernel.elf kernel.img
 
-$(BUILD)entry.o: entry.S
+$(BUILD)boot.o: boot.S
 	$(GCCPREFIX)as $< -o $@
 
-$(BUILD)init.o: init.cpp graphic.h
+$(BUILD)main.o: main.cpp graphic.h console.h
 	$(GCCPREFIX)g++ $(GCCFLAGS) $< -o $@
 
 $(BUILD)graphic.o: graphic.cpp graphic.h common.h
@@ -24,6 +24,9 @@ $(BUILD)font.o: font.cpp
 	$(GCCPREFIX)g++ $(GCCFLAGS) $< -o $@
 
 $(BUILD)logo.o: logo.cpp
+	$(GCCPREFIX)g++ $(GCCFLAGS) $< -o $@
+
+$(BUILD)console.o: console.cpp console.h graphic.h
 	$(GCCPREFIX)g++ $(GCCFLAGS) $< -o $@
 
 kernel.elf: $(OBJECTS) kernel.ld
