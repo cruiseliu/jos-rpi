@@ -1,5 +1,6 @@
 #include "console.h"
-#include "graphic.h"
+#include "screen.h"
+#include "uart.h"
 
 namespace Console {
 
@@ -9,24 +10,30 @@ namespace Console {
     // Current row and column
     static int row, col;
 
-    void init(int h, int w, int first_row)
+    void init()
     {
-        height = h;
-        width = w;
-        row = first_row;
+        // We will output to UART and screen
+        UART::init();
+        Screen::init();
+
+        height = Screen::height / Screen::line_height;
+        width  = Screen::width  / Screen::font_width;
+
+        // Set cursor below the logo
+        row = Screen::logo_height / Screen::line_height + 1;
         col = 0;
 
-        Graphic::paint_cursor(row, col);
+        Screen::paint_cursor(row, col);
     }
 
     static inline void new_line()
     {
         // Clear the cursor
-        Graphic::clear_char(row, col);
+        Screen::clear_char(row, col);
 
         // Scroll up the screen if full, otherwise move cursor down
         if (row == height - 1)
-            Graphic::scroll_up();
+            Screen::scroll_up();
         else
             ++row;
 
@@ -34,18 +41,24 @@ namespace Console {
         col = 0;
     }
 
+    const char max_escape = 0x20;
+
     void putchar(char ch)
     {
+        // Linux terminal can handle control charaters better than us
+        UART::putc(ch);
+
         switch (ch) {
             case '\b': // backspace
                 if (col > 0)
                     --col;
-                //Graphic::clear_char(row, --col);
+                //Screen::clear_char(row, --col);
                 break;
 
             case '\t': // tab
-                for (int i = 0; i < 8; ++i)
-                    putchar(' ');
+                col += 8;
+                if (col >= width)
+                    new_line();
                 break;
 
             case '\n': // new line (enter)
@@ -58,12 +71,15 @@ namespace Console {
                 break;
 
             default: // printable character
-                Graphic::paint_char(row, col, ch);
+                if (ch < max_escape) // unsupported escape code
+                    return;
+
+                Screen::paint_char(row, col, ch);
                 if (++col == width)
                     new_line();
         }
 
-        Graphic::paint_cursor(row, col);
+        Screen::paint_cursor(row, col);
     }
 
     void puts(const char *str)

@@ -1,4 +1,4 @@
-#include "graphic.h"
+#include "screen.h"
 #include "common.h"
 
 /**
@@ -20,24 +20,24 @@
  * See [1] for details.
  */
 namespace Mailbox {
-    static const Addr base_addr = 0x2000b880;
+    const Addr base_addr = 0x2000b880;
 
     // The port to receive message
-    static const Addr read_port   = base_addr + 0x00;
+    const Addr read_port   = base_addr + 0x00;
     // The port to check status
-    static const Addr status_port = base_addr + 0x18;
+    const Addr status_port = base_addr + 0x18;
     // The port to send message
-    static const Addr write_port  = base_addr + 0x20;
+    const Addr write_port  = base_addr + 0x20;
 
     // This bit indicating the mailbox is empty
-    static const Bitset empty = 1 << 30;
+    const Bitset empty = 1 << 30;
     // This bit indicating the mailbox is full
-    static const Bitset full  = 1 << 31;
+    const Bitset full  = 1 << 31;
 
     // The last 3 bits of a "mail" is the channel
-    static const Bitset channel_mask = 0xf;
+    const Bitset channel_mask = 0xf;
     // Thus only 15 channels are available
-    static const int max_channel = 15;
+    const int max_channel = 15;
 
     // Send data to channel
     static inline void send(uint32_t channel, uint32_t data)
@@ -75,11 +75,11 @@ namespace Mailbox {
 }
 
 /**
- * Graphic
+ * Framebuffer related stuff.
  *
  * See [1] for details.
  */
-namespace Graphic {
+namespace Screen {
     struct Framebuffer {
         // physical/virtual(framebuffer) width/height
         int32_t pw, ph, vw, vh;
@@ -99,10 +99,10 @@ namespace Graphic {
     static Framebuffer fb __attribute__((aligned(16)));
 
     // The framebuffer information should be send on mailbox channel 1
-    static const int gpu_mailbox = 1;
+    const int gpu_mailbox = 1;
     // Set the 30th bit to flush screen, said by [2]
     // TODO: What will happen if we use a high address for the kernel?
-    static const Bitset gpu_flush = 0x40000000;
+    const Bitset gpu_flush = 0x40000000;
 
     static inline void paint_logo();
 

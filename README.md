@@ -8,9 +8,10 @@ Usage
 
 Use `mkdir build && make` to build.
 
-You will get `kernel.elf` and `kernel.img` in project directory.
+You will find `kernel.elf` and `kernel.img` in project directory.
 
-If you have a Raspberry Pi with RASPBIAN, copy `kernel.img` to the boot partition.
+If you have a Raspberry Pi with RASPBIAN, copy `kernel.img` to the boot partition and connect your computer to it's UART port.
+You can use [raspbootin](https://github.com/mrvn/raspbootin) to simplify this progress.
 
 If you prefer an emulator such as [QEMU](https://github.com/Torlus/qemu/tree/rpi), just load `kernel.elf`.
 
@@ -20,9 +21,8 @@ Roadmap
   * ~~Bootloader~~
   * ~~Framebuffer~~
   * ~~Text ouput~~
-  * ~~Console output~~
-  * Keyboard input
-  * Console input
+  * ~~UART I/O~~
+  * ~~Console~~
   * Fromatted strings
   * Kernel shell
   * Backtrace
@@ -31,10 +31,9 @@ Roadmap
 TODO
 ----
 
-  * Write a better makefile
   * Put source files into subdirectories
-  * Set up a [serial bootloader](http://wiki.osdev.org/ARM_RaspberryPi#Boot-from-serial_kernel)
   * Generate documantation
+  * Implement a USB keyboard driver
 
 References
 ----------
@@ -44,3 +43,4 @@ References
  3. [Cambridge tutorial](http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/) (assembly)
  4. [eLinux RPi framebuffer article](http://elinux.org/RPi_Framebuffer)
  5. [Proggy font](http://www.proggyfonts.net/download/)
+ 6. [raspbootin](https://github.com/mrvn/raspbootin)

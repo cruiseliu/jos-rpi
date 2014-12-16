@@ -5,13 +5,13 @@
 // Due to endian issue, the order is 0xAABBGGRR.
 typedef uint32_t Color;
 
-namespace Graphic {
-    static const Color black = 0xff000000;
-    static const Color gray  = 0xffb2b2b2;
-    static const Color white = 0xffffffff;
+namespace Screen {
+    const Color black = 0xff000000;
+    const Color gray  = 0xffb2b2b2;
+    const Color white = 0xffffffff;
 
-    static const Color background_color = black;
-    static const Color foreground_color = gray;
+    const Color background_color = black;
+    const Color foreground_color = gray;
 
     // Set the framebuffer up. The function will stuck if it fails,
     // and you will see the 4-color gradient screen.
@@ -41,10 +41,10 @@ namespace Graphic {
      * config.txt. We do not use 24 bit because the GPU reads framebuffer byte by
      * byte, so we can't use a simple data type to represents a 24 bit pixel.
      */
-    static const int width  = 1024;
-    static const int height = 768;
+    const int width  = 1024;
+    const int height = 768;
     // don't forget to modify Color type and Framebuffer struct if you change this
-    static const int depth  = 32;
+    const int depth  = 32;
 
     /**
      * Font
@@ -54,20 +54,20 @@ namespace Graphic {
      * before each row. The font contains ASCII characters '\x20' (space) to '\x7e'
      * (tiled), any other characters are represented as a box.
      */
-    static const int font_width = 8;
-    static const int font_height = 13;
-    static const int line_space = 3;
-    static const int line_height = font_height + line_space;
+    const int font_width = 8;
+    const int font_height = 13;
+    const int line_space = 3;
+    const int line_height = font_height + line_space;
 
     // The last character available in the font, it should be non-printable.
-    static const int font_last_char = 127;
+    const int font_last_char = 127;
 
     // in font.cpp
     extern const uint16_t font[font_last_char + 1][font_height];
 
     /* Logo: The system will show a logo at the top-left corner after booting up. */
-    static const int logo_width  = 88;
-    static const int logo_height = 88;
+    const int logo_width  = 88;
+    const int logo_height = 88;
 
     // in logo.cpp
     extern const Color logo[logo_height][logo_width];
