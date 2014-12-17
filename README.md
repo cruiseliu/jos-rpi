@@ -6,7 +6,7 @@ Port of MIT JOS to Raspberry Pi.
 Usage
 -----
 
-Use `mkdir build && make` to build.
+Use `mkdir -p build/lib && make` to build.
 
 You will find `kernel.elf` and `kernel.img` in project directory.
 
@@ -18,15 +18,20 @@ If you prefer an emulator such as [QEMU](https://github.com/Torlus/qemu/tree/rpi
 Roadmap
 -------
 
-  * ~~Bootloader~~
-  * ~~Framebuffer~~
-  * ~~Text ouput~~
-  * ~~UART I/O~~
-  * ~~Console~~
-  * Fromatted strings
-  * Kernel shell
-  * Backtrace
-  * ......
+  * Lab 1
+    * ~~Bootloader~~
+    * ~~Framebuffer~~
+    * ~~Text ouput~~
+    * ~~UART I/O~~
+    * ~~Console~~
+    * ~~Fromatted strings~~
+    * ~~Kernel shell~~
+    * ~~Backtrace~~
+    * Symbol table
+    * Colorful output
+
+  * Lab 2
+    * ......
 
 TODO
 ----
