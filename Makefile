@@ -21,6 +21,7 @@ BUILD       =  build/
 
 # source files
 SOURCES_ASM := $(wildcard *.S)
+SOURCES_ASM += $(wildcard lib/*.S)
 SOURCES_CC  := $(wildcard *.cpp)
 
 # object files
@@ -32,7 +33,7 @@ OBJS        := $(addprefix $(BUILD),$(OBJS))
 DEPENDFLAGS := -MD -MP
 BASEFLAGS   := -O2 -fpic -pedantic -pedantic-errors -nostdlib
 BASEFLAGS   += -nostartfiles -ffreestanding -nodefaultlibs
-BASEFLAGS   += -fno-builtin -fomit-frame-pointer -mcpu=arm1176jzf-s
+BASEFLAGS   += -fno-builtin -fno-omit-frame-pointer -mcpu=arm1176jzf-s
 WARNFLAGS   := -Wall -Wextra
 ASFLAGS     := $(DEPENDFLAGS) -D__ASSEMBLY__
 CXXFLAGS    := $(DEPENDFLAGS) $(BASEFLAGS) $(WARNFLAGS)
