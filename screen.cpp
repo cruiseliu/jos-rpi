@@ -171,7 +171,8 @@ namespace Screen {
 
     void scroll_up()
     {
-        // TODO: use memmove and memset
+        // TODO: Extremely slow, how can we make it faster?
+
         // move each pixel line_height up
         for (int i = 0; i < height - line_height; ++i)
             for (int j = 0; j < width; ++j)

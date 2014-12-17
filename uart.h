@@ -1,3 +1,5 @@
+/* This file is copied from raspbootin */
+
 /* uart.h - UART initialization & communication */
 /* Copyright (C) 2013 Goswin von Brederlow <goswin-v-b@web.de>
 
@@ -31,7 +33,7 @@ namespace UART {
      * Transmit a byte via UART0.
      * uint8_t Byte: byte to send.
      */
-    void putc(uint8_t byte);
+    void putc(int byte);
 
     /*
      * Receive a byte via UART0.
@@ -39,7 +41,7 @@ namespace UART {
      * Returns:
      * uint8_t: byte received.
      */
-    uint8_t getc(void);
+    int getc(void);
 
     /*
      * print a string to the UART one character at a time

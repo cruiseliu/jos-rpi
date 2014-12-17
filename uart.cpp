@@ -1,3 +1,5 @@
+/* This file is copied from raspbootin */
+
 /* uart.cc - UART initialization & communication */
 /* Copyright (C) 2013 Goswin von Brederlow <goswin-v-b@web.de>
 
@@ -121,7 +123,7 @@ namespace UART {
      * Transmit a byte via UART0.
      * uint8_t Byte: byte to send.
      */
-    void putc(uint8_t byte) {
+    void putc(int byte) {
 	// wait for UART to become ready to transmit
 	while(true) {
 	    if (!(mmio_read(UART0_FR) & (1 << 5))) {
@@ -137,7 +139,7 @@ namespace UART {
      * Returns:
      * uint8_t: byte received.
      */
-    uint8_t getc(void) {
+    int getc(void) {
 	// wait for UART to have recieved something
 	while(true) {
 	    if (!(mmio_read(UART0_FR) & (1 << 4))) {

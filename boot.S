@@ -4,6 +4,7 @@
 
 _start:
     mov sp, #0x8000
+    mov fp, #0
 
     ldr r4, =__bss_start
     ldr r9, =__bss_end

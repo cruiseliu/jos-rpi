@@ -1,6 +1,13 @@
 #include "stdio.h"
+#include "string.h"
+#include "console.h"
 
-/* Ugly, rewrite me */
+// Because we only have kernel, just crash if write to stdin or read from stdout
+static FILE file_stdin  = { nullptr, Console::getc };
+static FILE file_stdout = { Console::putc, nullptr };
+
+FILE * const stdin  = &file_stdin;
+FILE * const stdout = &file_stdout;
 
 int printf(const char *format, ...)
 {
@@ -14,17 +21,69 @@ int printf(const char *format, ...)
     return ret;
 }
 
-static int printnum(unsigned long long num, unsigned base, int width, int padc)
+const int buflen = 1024;
+static char buf[buflen];
+
+char * readline(const char *prompt)
+{
+    if (prompt)
+        fputs(prompt, stdout);
+
+    int len = 0;
+    while (true) {
+        char ch = getchar();
+        // The UART will send us a \x7f (delete) when we press backspace
+        if (ch == '\x7f') ch = '\b';
+        // Always echo
+        putchar(ch);
+
+        if (ch == '\n') {
+            buf[len] = '\0';
+            return buf;
+        } else if (ch == '\b') {
+            --len;
+        } else {
+            buf[len++] = ch;
+        }
+    }
+}
+
+/* vfprintf part, mostly copied from JOS */
+
+const char digits[] = "0123456789abcdef";
+
+// Print dec number, using software division.
+static int printnum_d(FILE *s, unsigned long long num, int width, int padc)
 {
     int ret = 0;
-    if (num >= base) {
-        ret += printnum(num / base, base, width - 1, padc);
+    if (num >= 10) {
+        ret += printnum_d(s, num / 10, width - 1, padc);
     } else {
         ret += width;
         while (--width > 0)
-            putchar(padc);
+            s->putc(padc);
     }
-    putchar("0123456789abcdef"[num % base]);
+    s->putc(digits[num % 10]);
+    return ret + 1;
+}
+
+// Print oct or hex number, using shift.
+static int printnum_ox(FILE *s, unsigned long long num, unsigned log_base, int width, int padc)
+{
+    int ret = 0;
+
+    // make sure shift operation generates a unsigned long long
+    unsigned long long tmp = 1;
+    tmp <<= log_base;
+
+    if (num >= tmp) {
+        ret += printnum_ox(s, num >> log_base, log_base, width - 1, padc);
+    } else {
+        ret += width;
+        while (--width > 0)
+            s->putc(padc);
+    }
+    s->putc(digits[num & (tmp - 1)]);
     return ret + 1;
 }
 
@@ -48,21 +107,11 @@ static long long getint(va_list *ap, int lflag)
         return va_arg(*ap, int);
 }
 
-// TODO: move it to string.c
-static int strnlen(const char *s, int size)
-{
-    int n;
-    for (n = 0; size > 0 && *s != '\0'; ++s, --size)
-        ++n;
-    return n;
-}
-
-// FIXME: stream is ignored
-int vfprintf(__attribute__ ((unused))FILE *stream, const char *fmt, va_list ap)
+int vfprintf(FILE *s, const char *fmt, va_list ap)
 {
     int ret = 0;
     char ch, padc;
-    int width, precision, lflag, altflag, base;
+    int width, precision, lflag, altflag, log_base;
     unsigned long long num;
     const char *p;
 
@@ -70,7 +119,7 @@ int vfprintf(__attribute__ ((unused))FILE *stream, const char *fmt, va_list ap)
         while ((ch = *fmt++) != '%') {
             if (ch == '\0')
                 return ret;
-            putchar(ch);
+            s->putc(ch);
             ++ret;
         }
 
@@ -131,7 +180,7 @@ int vfprintf(__attribute__ ((unused))FILE *stream, const char *fmt, va_list ap)
             goto reswitch;
 
         case 'c':
-            putchar(va_arg(ap, int));
+            s->putc(va_arg(ap, int));
             ++ret;
             break;
 
@@ -144,114 +193,66 @@ int vfprintf(__attribute__ ((unused))FILE *stream, const char *fmt, va_list ap)
                 width -= strnlen(p, precision);
                 ret += width;
                 for (; width > 0; --width)
-                    putchar(padc);
+                    s->putc(padc);
             }
             for (; (ch = *p++) != '\0' && (precision < 0 || --precision >= 0); --width) {
                 if (altflag && (ch < ' ' || ch > '~'))
-                    putchar('?');
+                    s->putc('?');
                 else
-                    putchar(ch);
+                    s->putc(ch);
                 ++ret;
             }
             ret += width;
             for (; width > 0; --width)
-                putchar(' ');
+                s->putc(' ');
             break;
 
         case 'd':
             num = getint(&ap, lflag);
             if ((long long) num < 0) {
-                putchar('-');
+                s->putc('-');
                 ++ret;
                 num = -(long long) num;
             }
-            base = 10;
-            goto number;
+            goto dec_number;
 
         case 'u':
             num = getuint(&ap, lflag);
-            base = 10;
-            goto number;
+
+        dec_number:
+            printnum_d(s, num, width, padc);
+            break;
 
         case 'o':
             num = getuint(&ap, lflag);
-            base = 8;
+            log_base = 3; // log2(8)
             goto number;
 
         case 'p':
-            putchar('0');
-            putchar('x');
+            s->putc('0');
+            s->putc('x');
             ret += 2;
             num = (unsigned long long) (uintptr_t) va_arg(ap, void *);
-            base = 16;
+            log_base = 4; // log2(16)
             goto number;
 
         case 'x':
             num = getuint(&ap, lflag);
-            base = 16;
+            log_base = 4; // log2(16)
 
         number:
-            printnum(num, base, width, padc);
+            printnum_ox(s, num, log_base, width, padc);
             break;
 
         case '%':
-            putchar(ch);
+            s->putc(ch);
             ++ret;
             break;
 
         default:
-            putchar('%');
+            s->putc('%');
             for (fmt--; fmt[-1] != '%'; fmt--) { }
             break;
-        }
-    }
-}
-
-// copied somewhere
-//extern "C"
-//uint64_t __aeabi_uidivmod(uint32_t value, uint32_t divisor) {
-//    uint64_t answer = 0;
-//
-//    for (uint32_t i = 0; i < 32; i++) {
-//        if ((divisor << (31 - i)) >> (31 - i) == divisor) {
-//            if (value >= divisor << (31 - i)) {
-//                value -= divisor << (31 - i);
-//                answer |= 1 << (31 - i);
-//                if (value == 0) break;
-//            } 
-//        }
-//    }
-//
-//    answer |= (uint64_t)value << 32;
-//    return answer;
-//}
-//
-//extern "C"
-//uint32_t __aeabi_uidiv(uint32_t value, uint32_t divisor) {
-//    return __aeabi_uidivmod(value, divisor);
-//}
-
-const int buflen = 1024;
-static char buf[buflen];
-
-char * readline(const char *prompt)
-{
-    if (prompt)
-        printf("%s", prompt);
-
-    int len = 0;
-    while (true) {
-        char ch = getchar();
-        if (ch == '\x7f') ch = '\b';
-        putchar(ch);
-
-        if (ch == '\n') {
-            buf[len] = '\0';
-            return buf;
-        } else if (ch == '\b') {
-            --len;
-        } else {
-            buf[len++] = ch;
         }
     }
 }

@@ -1,5 +1,7 @@
 #include "monitor.h"
 #include "stdio.h"
+#include "string.h"
+#include <cstdint>
 
 struct Command {
     const char *name;
@@ -15,6 +17,8 @@ const Command commands[] = {
 
 const int commands_num = sizeof(commands) / sizeof(Command);
 
+/* Kernel Shell Utilities */
+
 int mon_help(int argc, char *argv[])
 {
     for (int i = 0; i < commands_num; ++i)
@@ -24,40 +28,46 @@ int mon_help(int argc, char *argv[])
 
 int mon_kerninfo(int argc, char *argv[])
 {
-    extern char _start[], __end[];
+    // _start defined in boot.S, others in kernel.ld
+    extern const char _start[], __start[], __end[];
+    extern const char __text_start[], __rodata_start[], __data_start[], __bss_start[];
 
-    printf("Special kernel symbols:\n");
+    puts  ("Special kernel symbols:");
     printf("  _start %08x\n", _start);
-    printf("  __end  %08x\n", __end);
-    printf("Kernel executable memory footprint: %dKB\n", (__end - _start) / 1024);
+    printf("  text   %08x\n", __text_start);
+    printf("  rodata %08x\n", __rodata_start);
+    printf("  data   %08x\n", __data_start);
+    printf("  bss    %08x\n", __bss_start);
+    printf("  end    %08x\n", __end);
+    // It's not rounded up, this minus error should be acceptable.
+    printf("Kernel executable memory footprint: %dKB\n", (__end - __start) / 1024);
     return 0;
 }
 
 int mon_backtrace(int argc, char *argv[])
 {
+    // A new way to get register value
     register uint32_t reg_fp asm ("fp");
-    uint32_t *topfp = (uint32_t *) reg_fp;
-    for (int limit = 10; topfp && limit > 0; --limit) {
-        uint32_t fp = topfp[-3];
-        uint32_t sp = topfp[-2];
-        uint32_t lr = topfp[-1];
-        uint32_t pc = topfp[-0];
+    uint32_t *fp = (uint32_t *) reg_fp;
 
-        printf("fp=%08x sp=%08x lr=%08x pc=%08x\n", fp, sp, lr, pc);
-        topfp = (uint32_t *) fp;
-    }
+    // Documentations are not reliable. The official website[1] said stack frame
+    // layout below fp should be (pc,lr,sp,fp). However I disassambled my kernel
+    // and found the first instruction of each function is "push {fp, lr}".
+    // The arguments are not on the stack thus invisible to backtrace.
+    // [1] http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0041c/Cegbajdj.html
+    for (; fp; fp = (uint32_t *) fp[-1])
+        printf("fp %08x  lr %08x\n", fp[-1], fp[0]);
+
+    // TODO: stab info
 
     return 0;
 }
 
+/* Kernel shell command interpreter, copied from JOS */
+
 const int max_argc = 16;
 
-static int strcmp(const char *p, const char *q)
-{
-    while (*p && *p == *q)
-        ++p, ++q;
-    return (int) ((unsigned char) *p - (unsigned char) *q);
-}
+const char whitespace[] = " \t\r\n";
 
 static int runcmd(char *buf)
 {
@@ -65,8 +75,8 @@ static int runcmd(char *buf)
     char *argv[max_argc];
 
     while (true) {
-        while (*buf == ' ')
-            *buf++ = '\0';
+        for (; *buf && strchr(whitespace, *buf); ++buf)
+            *buf = '\0';
         if (*buf == '\0')
             break;
 
@@ -76,8 +86,8 @@ static int runcmd(char *buf)
         }
 
         argv[argc++] = buf;
-        while (*buf && *buf != ' ')
-            ++buf;
+
+        for (; *buf && !strchr(whitespace, *buf); ++buf) { }
     }
 
     argv[argc] = nullptr;
@@ -89,7 +99,8 @@ static int runcmd(char *buf)
         if (strcmp(argv[0], commands[i].name) == 0)
             return commands[i].func(argc, argv);
 
-    puts("Unknown command");
+    fputs("Unknown command ", stdout);
+    puts(argv[0]);
     return 0;
 }
 

@@ -1,3 +1,5 @@
+/* This file is copied from Chromium OS */
+
 /*
 * Copyright (c) 2011 The Chromium OS Authors. All rights reserved.
 * Use of this source code is governed by a BSD-style license that can be

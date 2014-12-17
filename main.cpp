@@ -1,5 +1,5 @@
-#include "console.h"
 #include "stdio.h"
+#include "console.h"
 #include "monitor.h"
 
 void test_backtrace(int x)
@@ -17,9 +17,9 @@ void kernel_main()
 {
     Console::init();
 
-    printf("6828 decimal is %o octal!\n", 6828);
+    test_backtrace(5);
 
-    //test_backtrace(5);
+    printf("6828 decimal is %o octal!\n", 6828);
 
     monitor();
 }

@@ -2,6 +2,19 @@
 #include "screen.h"
 #include "uart.h"
 
+/**
+ * Console: a wrapper arount I/O devices
+ *
+ * The console gets input from UART, and puts output to both UART and HDMI.
+ * Ideally it should also read from keyboard, but the driver has not been
+ * implemented yet.
+ * We have a cursor system for screen output, but we will put raw characters
+ * to UART and let the connected linux tools to deal with them.
+ * Other modules should not do anything with I/O devices directly anymore,
+ * but use this console instead. The initializer is called by kernal_main,
+ * putc and getc are designed for stdio.
+ */
+
 namespace Console {
 
     // Screen size, counted by character
@@ -10,28 +23,29 @@ namespace Console {
     // Current row and column
     static int row, col;
 
+    // Initialize the console and underlying I/O devices.
     void init()
     {
-        // We will output to UART and screen
         UART::init();
         Screen::init();
 
         height = Screen::height / Screen::line_height;
         width  = Screen::width  / Screen::font_width;
 
-        // Set cursor below the logo
+        // Put cursor below the logo
         row = Screen::logo_height / Screen::line_height + 1;
         col = 0;
 
         Screen::paint_cursor(row, col);
     }
 
+    // Create a new line on the screen.
     static inline void new_line()
     {
         // Clear the cursor
         Screen::clear_char(row, col);
 
-        // Scroll up the screen if full, otherwise move cursor down
+        // Scroll up the screen if it's full, otherwise move cursor down
         if (row == height - 1)
             Screen::scroll_up();
         else
@@ -41,21 +55,23 @@ namespace Console {
         col = 0;
     }
 
-    const char max_escape = 0x20;
+    const char max_control = 0x20; // ' '
 
-    void putchar(char ch)
+    void putc(int ch)
     {
-        // Linux terminal can handle control charaters better than us
+        // Linux terminals can handle control charaters better than us
         UART::putc(ch);
 
         switch (ch) {
             case '\b': // backspace
                 if (col > 0)
                     --col;
+                // The character is covered by cursor
                 //Screen::clear_char(row, --col);
                 break;
 
             case '\t': // tab
+                // I don't like tab, just print up to 8 spaces
                 col += 8;
                 if (col >= width)
                     new_line();
@@ -70,22 +86,17 @@ namespace Console {
                 col = 0;
                 break;
 
-            default: // printable character
-                if (ch < max_escape) // unsupported escape code
+            default:
+                // unsupported control code
+                if (ch < max_control)
                     return;
 
+                // printable character
                 Screen::paint_char(row, col, ch);
                 if (++col == width)
                     new_line();
         }
 
         Screen::paint_cursor(row, col);
-    }
-
-    void puts(const char *str)
-    {
-        for (; *str; ++str)
-            putchar(*str);
-        putchar('\n');
     }
 }
