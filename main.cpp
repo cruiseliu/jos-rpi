@@ -8,7 +8,7 @@ void test_backtrace(int x)
     if (x > 0)
         test_backtrace(x - 1);
     else
-        mon_backtrace(0, nullptr);
+        Monitor::backtrace(0, nullptr);
     printf("leaving test_backtrace %d\n", x);
 }
 
@@ -21,5 +21,5 @@ void kernel_main()
 
     printf("6828 decimal is %o octal!\n", 6828);
 
-    monitor();
+    Monitor::run();
 }

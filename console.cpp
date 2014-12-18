@@ -2,28 +2,18 @@
 #include "screen.h"
 #include "uart.h"
 
-/**
- * Console: a wrapper arount I/O devices
- *
- * The console gets input from UART, and puts output to both UART and HDMI.
- * Ideally it should also read from keyboard, but the driver has not been
- * implemented yet.
- * We have a cursor system for screen output, but we will put raw characters
- * to UART and let the connected linux tools to deal with them.
- * Other modules should not do anything with I/O devices directly anymore,
- * but use this console instead. The initializer is called by kernal_main,
- * putc and getc are designed for stdio.
- */
-
 namespace Console {
 
-    // Screen size, counted by character
+    /// @name Screen size, counted by characters
+    //@{
     static int height, width;
+    //@}
 
-    // Current row and column
+    /// @name Current cursor position
+    //@{
     static int row, col;
+    //@}
 
-    // Initialize the console and underlying I/O devices.
     void init()
     {
         UART::init();
@@ -39,7 +29,7 @@ namespace Console {
         Screen::paint_cursor(row, col);
     }
 
-    // Create a new line on the screen.
+    /// Create a new line on the screen.
     static inline void new_line()
     {
         // Clear the cursor
@@ -55,7 +45,8 @@ namespace Console {
         col = 0;
     }
 
-    const char max_control = 0x20; // ' '
+    /// Character next to last control character (' ', whitespace)
+    const char max_control = 0x20;
 
     void putc(int ch)
     {
@@ -64,10 +55,11 @@ namespace Console {
 
         switch (ch) {
             case '\b': // backspace
+                // Clear the cursor
+                Screen::clear_char(row, col);
                 if (col > 0)
                     --col;
-                // The character is covered by cursor
-                //Screen::clear_char(row, --col);
+                // Deleted character is covered by cursor
                 break;
 
             case '\t': // tab

@@ -37,7 +37,6 @@ TODO
 ----
 
   * Put source files into subdirectories
-  * Generate documantation
   * Implement a USB keyboard driver
 
 References
@@ -49,3 +48,4 @@ References
  4. [eLinux RPi framebuffer article](http://elinux.org/RPi_Framebuffer)
  5. [Proggy font](http://www.proggyfonts.net/download/)
  6. [raspbootin](https://github.com/mrvn/raspbootin)
+ 7. [Chromium OS](https://chromium.googlesource.com/chromiumos/third_party/u-boot-v1/+/master/arch/arm/lib/_uldivmod.S)

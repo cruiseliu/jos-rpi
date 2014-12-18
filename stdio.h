@@ -3,9 +3,12 @@
 #include <cstdarg>
 
 /**
- * These functions are similar to standard libraries, so we omitted namespace
- * and descriptions.
- * stdin and stdout are set to the console, stderr not supported.
+ * @file
+ * @brief Functions similar to standard library.
+ *
+ * Documantations omitted, I know you have the POSIX manual.
+ *
+ * `stdin` and `stdout` are set to the console, `stderr` is not supported.
  */
 
 struct FILE {

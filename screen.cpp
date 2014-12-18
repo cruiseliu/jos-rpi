@@ -1,45 +1,30 @@
 #include "screen.h"
 #include "common.h"
 
-/**
- * This file deals with the RPi graphic system.
- *
- * The VGA text-mode used by JOS is a PC specific feature, thus not available
- * for RPi or any other ARM platforms. So we have to use framebuffer even for
- * most basic text console. Fortunately I have found some good documentation
- * on the web.
- *
- * [1] quick reference: http://elinux.org/RPi_Framebuffer
- * [2] step-by-step tutorial: http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/
- */
-
-/**
- * Mailbox
- *
- * The CPU communicates with GPU using mailbox.
- * See [1] for details.
- */
+/// @brief The mechanism used to trasferring data between CPU and GPU
 namespace Mailbox {
+    /// The base address of mailbox MMIO
     const Addr base_addr = 0x2000b880;
 
-    // The port to receive message
+    /// The port to receive message
     const Addr read_port   = base_addr + 0x00;
-    // The port to check status
+    /// The port to check status
     const Addr status_port = base_addr + 0x18;
-    // The port to send message
+    /// The port to send message
     const Addr write_port  = base_addr + 0x20;
 
-    // This bit indicating the mailbox is empty
+    /// This bit indicating the mailbox is empty
     const Bitset empty = 1 << 30;
-    // This bit indicating the mailbox is full
+    /// This bit indicating the mailbox is full
     const Bitset full  = 1 << 31;
 
-    // The last 3 bits of a "mail" is the channel
+    /// The last 3 bits of a "mail" is the channel
     const Bitset channel_mask = 0xf;
-    // Thus only 15 channels are available
+    /// Thus only 15 channels are available
     const int max_channel = 15;
 
-    // Send data to channel
+    /// Send data to channel.
+    /// The last 3 bits of data must be 0.
     static inline void send(uint32_t channel, uint32_t data)
     {
         // Validate the channel
@@ -52,8 +37,8 @@ namespace Mailbox {
         mmio_write(write_port, data | channel);
     }
 
-    // Receive data from channel, drop any messages from other channels.
-    // Return -1 on fail.
+    /// Receive data from channel.
+    /// Drop any messages from other channels. Return -1 on fail.
     static inline uint32_t receive(uint32_t channel)
     {
         // Validate the channel
@@ -74,33 +59,50 @@ namespace Mailbox {
     }
 }
 
-/**
- * Framebuffer related stuff.
- *
- * See [1] for details.
- */
 namespace Screen {
+    /**
+     * \brief Information of the framebuffer
+     *
+     * To initialize GPU, send it a pointer of Framebuffer with some fields
+     * filled in via mailbox. The GPU will set the rest members, including
+     * pointer to the "real" framebuffer (pixels).
+     */
     struct Framebuffer {
-        // physical/virtual(framebuffer) width/height
-        int32_t pw, ph, vw, vh;
-        // number of bytes per row
+        /// physical width
+        int32_t pw;
+        /// physical height
+        int32_t ph;
+
+        /// virtual (framebuffer) width
+        int32_t vw;
+        /// virtual (framebuffer) height
+        int32_t vh;
+
+        /// number of bytes per row
         int32_t pitch;
-        // bits per pixel
+
+        /// bits per pixel
         int32_t depth;
-        // start position
-        int32_t x, y;
-        // pointer to the framebuffer
+
+        /// start X position (not used)
+        int32_t x;
+        /// start Y position (not used)
+        int32_t y;
+
+        /// pointer to the framebuffer
         Color *pixels;
-        // size of the framebuffer
+
+        /// size of the framebuffer
         uint32_t size;
     };
 
-    // Note the alignment.
+    /// The framebuffer, alignment is required by mailbox.
     static Framebuffer fb __attribute__((aligned(16)));
 
-    // The framebuffer information should be send on mailbox channel 1
+    /// The framebuffer information should be send on mailbox channel 1
     const int gpu_mailbox = 1;
-    // Set the 30th bit to flush screen, said by [2]
+
+    /// Set the 30th bit to flush screen, said by [2]
     // TODO: What will happen if we use a high address for the kernel?
     const Bitset gpu_flush = 0x40000000;
 
@@ -124,18 +126,19 @@ namespace Screen {
         paint_logo();
     }
 
+    /// Get the color of pixel at (row,col).
     static inline Color get_pixel(int row, int col)
     {
         return fb.pixels[row * width + col];
     }
 
-    // Set the pixel at (row,col) to given color.
+    /// Set the pixel at (row,col) to given color.
     static inline void set_pixel(int row, int col, Color color)
     {
         fb.pixels[row * width + col] = color;
     }
 
-    // Paint the logo.
+    /// Paint the logo defined in logo.cpp
     static inline void paint_logo()
     {
         for (int i = 0; i < logo_height; ++i)

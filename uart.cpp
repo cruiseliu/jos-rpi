@@ -1,4 +1,5 @@
-/* This file is copied from raspbootin */
+/// @file
+/// @brief This file is copied from raspbootin
 
 /* uart.cc - UART initialization & communication */
 /* Copyright (C) 2013 Goswin von Brederlow <goswin-v-b@web.de>

@@ -1,7 +1,27 @@
 #pragma once
 
-void monitor();
+/**
+ * @brief The kernel shell.
+ *
+ * The monitor use stdio to communicate with user, and is not interested in
+ * the implementation details of stdio. Thus stdio should be set up before
+ * starting the shell.
+ */
 
-int mon_help(int argc, char *argv[]);
-int mon_kerninfo(int argc, char *argv[]);
-int mon_backtrace(int argc, char *argv[]);
+namespace Monitor {
+    /// Run the shell.
+    void run();
+
+    /// @name Shell commands
+    //@{
+
+    /// Show the list of commands.
+    int help(int argc, char *argv[]);
+
+    /// Display some address information of the kernel.
+    int kerninfo(int argc, char *argv[]);
+
+    /// @brief Display the stack backtrace.
+    int backtrace(int argc, char *argv[]);
+    //@}
+}
