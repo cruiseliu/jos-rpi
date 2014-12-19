@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['kerninfo',['kerninfo',['../namespaceMonitor.html#afd9f9b13a68b92ded198bf9403965235',1,'Monitor']]]
+  ['init',['init',['../namespaceScreen.html#a83b1198dc25fb5134437c49bbcaf1cca',1,'Screen']]]
 ];

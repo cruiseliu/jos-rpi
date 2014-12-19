@@ -103,6 +103,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <td><a class="el" href="monitor_8h_source.html">monitor.h</a> <br />
  monitor.cpp </td><td>内核 shell </td></tr>
 <tr>
+<td><a class="el" href="kdebug_8h_source.html">kdebug.h</a> <br />
+ kdebug.cpp </td><td>获取函数名和行号等调试信息 </td></tr>
+<tr>
 <td><a class="el" href="stdio_8h.html" title="Functions similar to standard library. ">stdio.h</a> <br />
  stdio.cpp </td><td>将 Console 封装成标准库格式 </td></tr>
 <tr>
@@ -140,11 +143,16 @@ add  fp, sp, #4
 <p>另外在网上看到了个读寄存器的简易方法: </p><pre class="fragment">register uint32_t reg_fp asm("fp");
 uint32_t fp = reg_fp;
 </pre><p>个人觉得比内联汇编优雅.</p>
-<p>相关文档: <a class="el" href="namespaceMonitor.html#a6a88ac746dfd01e0b27bae94f249331a" title="Display the stack backtrace. ">Monitor::backtrace</a> </p>
+<p>相关文档: <a class="el" href="namespaceMonitor.html#a6a88ac746dfd01e0b27bae94f249331a" title="Display the stack backtrace. ">Monitor::backtrace</a></p>
+<h2>其他</h2>
+<p>键盘驱动直接用了别人的库, 个人认为现在还不是纠结 USB 的时机.</p>
+<p>因为用的是 framebuffer 所以彩色输出就是非常自然的功能了, UART 那边 bash 本来就支持彩色输出所以不需要我们操心.</p>
+<p>至此 Lab 1 所有功能都已经完成, 现在这个系统既可以只用一根刷机线连到电脑上在教室里跑, 也可以不要电脑直接插键盘显示器用, 带行号的 backtrace 和彩色输出等比较高级的功能该有的也都有, 我自认为已经是非常完善了.</p>
+<p>Lab 2 恐怕没时间做了... </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 19 2014 12:25:34 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 20 2014 05:14:01 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

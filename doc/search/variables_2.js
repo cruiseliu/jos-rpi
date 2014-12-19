@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['depth',['depth',['../namespaceScreen.html#afadd8138bfa4d75c37109a1203d17cd9',1,'Screen::Framebuffer']]],
-  ['desc',['desc',['../structMonitor_1_1Command.html#ae90248b93b40bf8da95a557737540a98',1,'Monitor::Command']]]
+  ['channel_5fmask',['channel_mask',['../namespaceMailbox.html#a0e7b22cc1ee2476b08029dce20d344c8',1,'Mailbox']]],
+  ['commands',['commands',['../namespaceMonitor.html#a47c331a77085d0236cf4c11badee6522',1,'Monitor']]],
+  ['commands_5fnum',['commands_num',['../namespaceMonitor.html#a486c33d585337998099ea5f3755ccc28',1,'Monitor']]]
 ];

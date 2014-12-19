@@ -1,4 +1,5 @@
 #include "monitor.h"
+#include "kdebug.h"
 #include "stdio.h"
 #include "string.h"
 #include <cstdint>
@@ -68,10 +69,10 @@ namespace Monitor {
         register uint32_t reg_fp asm ("fp");
         uint32_t *fp = (uint32_t *) reg_fp;
 
-        for (; fp; fp = (uint32_t *) fp[-1])
+        for (; fp; fp = (uint32_t *) fp[-1]) {
             printf("fp %08x  lr %08x\n", fp[-1], fp[0]);
-
-        // TODO: stab info
+            DebugInfo(fp[0] - 4).show();
+        }
 
         return 0;
     }

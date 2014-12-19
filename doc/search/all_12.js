@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['whitespace',['whitespace',['../namespaceMonitor.html#aacfd6550e352a68bc77297244abb0814',1,'Monitor']]],
-  ['write_5fport',['write_port',['../namespaceMailbox.html#ab57b9b54935e3193c6f7ede53a707490',1,'Mailbox']]]
+  ['type',['type',['../structStab.html#a63dfd1551a503bfecc25e9ba2e37d786',1,'Stab']]]
 ];

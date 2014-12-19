@@ -33,9 +33,9 @@ OBJS        := $(addprefix $(BUILD),$(OBJS))
 DEPENDFLAGS := -MD -MP
 BASEFLAGS   := -O2 -fpic -pedantic -pedantic-errors -nostdlib
 BASEFLAGS   += -nostartfiles -ffreestanding -nodefaultlibs
-BASEFLAGS   += -fno-builtin -fno-omit-frame-pointer -mcpu=arm1176jzf-s
+BASEFLAGS   += -fno-builtin -fno-omit-frame-pointer -mcpu=arm1176jzf-s -gstabs
 WARNFLAGS   := -Wall -Wextra
-ASFLAGS     := $(DEPENDFLAGS) -D__ASSEMBLY__
+ASFLAGS     := $(DEPENDFLAGS) -D__ASSEMBLY__ -gstabs
 CXXFLAGS    := $(DEPENDFLAGS) $(BASEFLAGS) $(WARNFLAGS)
 CXXFLAGS    += -fno-exceptions -std=c++0x
 

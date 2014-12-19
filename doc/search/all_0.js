@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['background_5fcolor',['background_color',['../namespaceScreen.html#a8c4ceb867740748818f08c035518b572',1,'Screen']]],
-  ['backtrace',['backtrace',['../namespaceMonitor.html#a6a88ac746dfd01e0b27bae94f249331a',1,'Monitor']]],
-  ['base_5faddr',['base_addr',['../namespaceMailbox.html#aaa7d5754d97f95c600b3eb6f87d783fd',1,'Mailbox']]]
+  ['addr',['addr',['../classDebugInfo.html#a995b08d033ec316969f985887a3656f1',1,'DebugInfo']]]
 ];

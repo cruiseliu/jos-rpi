@@ -22,6 +22,24 @@ SECTIONS
     . = ALIGN(4096);
     __rodata_end = .;
 
+    __stab_start = .;
+    .stab :
+    {
+        *(.stab);
+        BYTE(0)
+    }
+    __stab_end = .;
+
+    __stabstr_start = .;
+    .stabstr :
+    {
+        *(.stabstr);
+        BYTE(0)
+    }
+    __stabstr_end = .;
+
+    . = ALIGN(4096);
+
     __data_start = .;
     .data :
     {

@@ -25,3 +25,9 @@ const char * strchr(const char *s, int c)
     for (; *s && *s != c; ++s) { }
     return *s == c ? s : nullptr;
 }
+
+const char * strchrnul(const char *s, int c)
+{
+    for (; *s && *s != c; ++s) { }
+    return s;
+}

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y',['y',['../namespaceScreen.html#ab17dbe5b0904fbfe9d4017fbd534c25b',1,'Screen::Framebuffer']]]
+  ['type',['type',['../structStab.html#a63dfd1551a503bfecc25e9ba2e37d786',1,'Stab']]]
 ];

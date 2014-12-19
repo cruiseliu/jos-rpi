@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['name',['name',['../structMonitor_1_1Command.html#ad0d161de38bc4999edfd703ba9ad8d20',1,'Monitor::Command']]]
+  ['line',['line',['../classDebugInfo.html#a2a52491b79f14a7da625e74646773cd4',1,'DebugInfo']]],
+  ['logo',['logo',['../namespaceScreen.html#a6e85b10f46c813f53219f62cdb97504c',1,'Screen']]]
 ];

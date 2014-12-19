@@ -10,6 +10,7 @@ font.cpp                        | Screen 使用的字体数据
 logo.cpp                        | Screen 使用的logo数据
 console.h <BR> console.cpp      | I/O 设备的封装
 monitor.h <BR> monitor.cpp      | 内核 shell
+kdebug.h <BR> kdebug.cpp        | 获取函数名和行号等调试信息
 stdio.h <BR> stdio.cpp          | 将 Console 封装成标准库格式
 string.h <BR> string.cpp        | 类似标准库
 common.h                        | 通用的 typedef 及函数
@@ -67,3 +68,13 @@ ARM 的栈帧结构在官方文档中有[介绍](http://infocenter.arm.com/help/
 个人觉得比内联汇编优雅.
 
 相关文档: Monitor::backtrace
+
+## 其他
+
+键盘驱动直接用了别人的库, 个人认为现在还不是纠结 USB 的时机.
+
+因为用的是 framebuffer 所以彩色输出就是非常自然的功能了, UART 那边 bash 本来就支持彩色输出所以不需要我们操心.
+
+至此 Lab 1 所有功能都已经完成, 现在这个系统既可以只用一根刷机线连到电脑上在教室里跑, 也可以不要电脑直接插键盘显示器用, 带行号的 backtrace 和彩色输出等比较高级的功能该有的也都有, 我自认为已经是非常完善了.
+
+Lab 2 恐怕没时间做了...

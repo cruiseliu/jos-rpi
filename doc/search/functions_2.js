@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get_5fpixel',['get_pixel',['../namespaceScreen.html#a2c9ad62bb328f4507cd534b07072c823',1,'Screen']]]
+  ['debuginfo',['DebugInfo',['../classDebugInfo.html#a5b383e0e33267adacd51e95025876742',1,'DebugInfo']]]
 ];
