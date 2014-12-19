@@ -1,19 +1,20 @@
 ## 源文件列表
 
-文件名        | 主要功能
---------------|--------------------------
-boot.S        | 启动文件, 初始化栈和 bss
-main.cpp      | C 代码入口, 主要负责初始化
-uart.h/cpp    | UART I/O, 来自 raspbootin
-screen.h/cpp  | Framebuffer 操作
-font.cpp      | Screen 使用的字体数据
-logo.cpp      | Screen 使用的logo数据
-console.h/cpp | I/O 设备的封装
-monitor.h/cpp | 内核 shell
-stdio.h/cpp   | 将 Console 封装成标准库格式
-string.h/cpp  | 类似标准库
-common.h      | 通用的 typedef 及函数
-lib           | 除法库, 来自 Chromium OS
+文件名                          | 主要功能
+--------------------------------|--------------------------
+boot.S                          | 启动文件, 初始化栈和 bss
+main.cpp                        | C 代码入口, 主要负责初始化
+uart.h <BR> uart.cpp            | UART I/O, 来自 raspbootin
+screen.h <BR> screen.cpp        | Framebuffer 操作
+font.cpp                        | Screen 使用的字体数据
+logo.cpp                        | Screen 使用的logo数据
+console.h <BR> console.cpp      | I/O 设备的封装
+monitor.h <BR> monitor.cpp      | 内核 shell
+stdio.h <BR> stdio.cpp          | 将 Console 封装成标准库格式
+string.h <BR> string.cpp        | 类似标准库
+common.h                        | 通用的 typedef 及函数
+lib/\_*div*.S                   | 除法库, 来自 Chromium OS
+lib/libcsud.a<BR>lib/keyboard.S | 键盘驱动, 来自剑桥教程
 
 其他文件中除了 kernel.ld 和 Makefile 外都是非必须的.
 
@@ -66,9 +67,3 @@ ARM 的栈帧结构在官方文档中有[介绍](http://infocenter.arm.com/help/
 个人觉得比内联汇编优雅.
 
 相关文档: Monitor::backtrace
-
-## 其他
-
-剩下的代码基本都是纯软件的就不多说了, 从 JOS 抄了不少(不然也不好意思叫移植了)
-
-用 C++ 没什么的特别的理由, 就是我喜欢...

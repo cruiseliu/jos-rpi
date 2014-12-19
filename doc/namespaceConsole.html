@@ -106,13 +106,15 @@ static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a995871beede3884470e83ef4334321fb">putc</a> (int ch)</td></tr>
 <tr class="memdesc:a995871beede3884470e83ef4334321fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output a character at current position. <br /></td></tr>
 <tr class="separator:a995871beede3884470e83ef4334321fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d7f8dd950d583c4c5b5afd7ea1341b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d7f8dd950d583c4c5b5afd7ea1341b1"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a7d7f8dd950d583c4c5b5afd7ea1341b1">getc</a> ()</td></tr>
-<tr class="memdesc:a7d7f8dd950d583c4c5b5afd7ea1341b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a character from user, from UART currently. <br /></td></tr>
+<tr class="memitem:a7d7f8dd950d583c4c5b5afd7ea1341b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a7d7f8dd950d583c4c5b5afd7ea1341b1">getc</a> ()</td></tr>
 <tr class="separator:a7d7f8dd950d583c4c5b5afd7ea1341b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:a0c48a5bcc6a66151558190e349a24fdf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0c48a5bcc6a66151558190e349a24fdf"></a>
+static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a0c48a5bcc6a66151558190e349a24fdf">keyboard_avail</a></td></tr>
+<tr class="memdesc:a0c48a5bcc6a66151558190e349a24fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not a keyboard is plugged before booting. <br /></td></tr>
+<tr class="separator:a0c48a5bcc6a66151558190e349a24fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94c58bf6aaadcaef7747cf228d0ea814"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94c58bf6aaadcaef7747cf228d0ea814"></a>
 const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a94c58bf6aaadcaef7747cf228d0ea814">max_control</a> = 0x20</td></tr>
 <tr class="memdesc:a94c58bf6aaadcaef7747cf228d0ea814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Character next to last control character (' ', whitespace) <br /></td></tr>
@@ -134,13 +136,31 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>col</b></td></t
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A wrapper around I/O devices. </p>
-<p>The console gets input from UART, and puts output to both UART and HDMI. Ideally it should also read from keyboard, but the driver has not been implemented yet.</p>
+<p>The console gets input from keyboard or UART (when keyboard not available), and puts output to both UART and HDMI.</p>
 <p>We have a cursor system for screen output, but we will put raw characters to UART and let the connected linux tools to deal with them.</p>
+<p>The keyboard driver is from the Cambridge tutorial rather than implemented myself.</p>
 <p>Other modules should not do anything with I/O devices directly anymore, but use this console instead. The initializer is called by kernal_main, putc and getc are designed for stdio. </p>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a class="anchor" id="a7d7f8dd950d583c4c5b5afd7ea1341b1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Console::getc </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get a character from user. If a USB keyboard is plugged before booting, the keyboard will be used. Otherwise we will get a character from UART. Hot-plug is not supported. </p>
+
+</div>
+</div>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 18 2014 22:43:56 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 19 2014 11:13:23 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

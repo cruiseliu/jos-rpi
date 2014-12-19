@@ -87,25 +87,34 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr>
 <td>main.cpp </td><td>C 代码入口, 主要负责初始化 </td></tr>
 <tr>
-<td><a class="el" href="uart_8h.html" title="This file is copied from raspbootin. ">uart.h</a>/cpp </td><td>UART I/O, 来自 raspbootin </td></tr>
+<td><a class="el" href="uart_8h.html" title="This file is copied from raspbootin. ">uart.h</a> <br />
+ <a class="el" href="uart_8cpp.html" title="This file is copied from raspbootin. ">uart.cpp</a> </td><td>UART I/O, 来自 raspbootin </td></tr>
 <tr>
-<td><a class="el" href="screen_8h_source.html">screen.h</a>/cpp </td><td>Framebuffer 操作 </td></tr>
+<td><a class="el" href="screen_8h_source.html">screen.h</a> <br />
+ screen.cpp </td><td>Framebuffer 操作 </td></tr>
 <tr>
 <td>font.cpp </td><td><a class="el" href="namespaceScreen.html" title="The RPi graphic system. ">Screen</a> 使用的字体数据 </td></tr>
 <tr>
 <td>logo.cpp </td><td><a class="el" href="namespaceScreen.html" title="The RPi graphic system. ">Screen</a> 使用的logo数据 </td></tr>
 <tr>
-<td><a class="el" href="console_8h_source.html">console.h</a>/cpp </td><td>I/O 设备的封装 </td></tr>
+<td><a class="el" href="console_8h_source.html">console.h</a> <br />
+ console.cpp </td><td>I/O 设备的封装 </td></tr>
 <tr>
-<td><a class="el" href="monitor_8h_source.html">monitor.h</a>/cpp </td><td>内核 shell </td></tr>
+<td><a class="el" href="monitor_8h_source.html">monitor.h</a> <br />
+ monitor.cpp </td><td>内核 shell </td></tr>
 <tr>
-<td><a class="el" href="stdio_8h.html" title="Functions similar to standard library. ">stdio.h</a>/cpp </td><td>将 <a class="el" href="namespaceConsole.html" title="A wrapper around I/O devices. ">Console</a> 封装成标准库格式 </td></tr>
+<td><a class="el" href="stdio_8h.html" title="Functions similar to standard library. ">stdio.h</a> <br />
+ stdio.cpp </td><td>将 <a class="el" href="namespaceConsole.html" title="A wrapper around I/O devices. ">Console</a> 封装成标准库格式 </td></tr>
 <tr>
-<td><a class="el" href="string_8h.html" title="Standard functions, that&#39;s all. ">string.h</a>/cpp </td><td>类似标准库 </td></tr>
+<td><a class="el" href="string_8h.html" title="Standard functions, that&#39;s all. ">string.h</a> <br />
+ string.cpp </td><td>类似标准库 </td></tr>
 <tr>
 <td><a class="el" href="common_8h_source.html">common.h</a> </td><td>通用的 typedef 及函数 </td></tr>
 <tr>
-<td>lib </td><td>除法库, 来自 Chromium OS </td></tr>
+<td>lib/_*div*.S </td><td>除法库, 来自 Chromium OS </td></tr>
+<tr>
+<td>lib/libcsud.a<br />
+lib/keyboard.S </td><td>键盘驱动, 来自剑桥教程 </td></tr>
 </table>
 <p>其他文件中除了 kernel.ld 和 Makefile 外都是非必须的.</p>
 <p>其中 boot.S, main.cpp, <a class="el" href="uart_8h.html" title="This file is copied from raspbootin. ">uart.h</a>/cpp, kernel.ld 这几个文件和之前提交过的报告中差别不大, 不再赘述.</p>
@@ -131,14 +140,11 @@ add  fp, sp, #4
 <p>另外在网上看到了个读寄存器的简易方法: </p><pre class="fragment">register uint32_t reg_fp asm("fp");
 uint32_t fp = reg_fp;
 </pre><p>个人觉得比内联汇编优雅.</p>
-<p>相关文档: <a class="el" href="namespaceMonitor.html#a6a88ac746dfd01e0b27bae94f249331a" title="Display the stack backtrace. ">Monitor::backtrace</a></p>
-<h2>其他</h2>
-<p>剩下的代码基本都是纯软件的就不多说了, 从 JOS 抄了不少(不然也不好意思叫移植了)</p>
-<p>用 C++ 没什么的特别的理由, 就是我喜欢... </p>
+<p>相关文档: <a class="el" href="namespaceMonitor.html#a6a88ac746dfd01e0b27bae94f249331a" title="Display the stack backtrace. ">Monitor::backtrace</a> </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Thu Dec 18 2014 22:43:56 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 19 2014 11:13:23 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

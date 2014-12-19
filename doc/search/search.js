@@ -12,7 +12,7 @@ var indexSectionsWithContent =
   2: "cms",
   3: "su",
   4: "bcghiknprs",
-  5: "bcdefglmnprsvwxy",
+  5: "bcdefgklmnprsvwxy",
   6: "j"
 };
 

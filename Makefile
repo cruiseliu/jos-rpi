@@ -45,7 +45,7 @@ all: kernel.img
 include $(wildcard *.d)
 
 kernel.elf: $(OBJS) kernel.ld
-	$(GCCPREFIX)ld $(OBJS) -T kernel.ld -o $@
+	$(GCCPREFIX)ld $(OBJS) -Llib -l csud -T kernel.ld -o $@
 
 kernel.img: kernel.elf
 	$(GCCPREFIX)objcopy kernel.elf -O binary kernel.img

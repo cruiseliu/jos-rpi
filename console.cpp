@@ -2,6 +2,17 @@
 #include "screen.h"
 #include "uart.h"
 
+extern "C" {
+    /// Initialize the USB driver, this will take several seconds.
+    void UsbInitialise();
+    /// Count keyboards on USB port.
+    int KeyboardCount();
+    /// Refresh keyboard status, including keystroke status.
+    void KeyboardUpdate();
+    /// Get the keystoke at the moment of last KeyboardUpdate call.
+    int KeyboardGetChar();
+}
+
 namespace Console {
 
     /// @name Screen size, counted by characters
@@ -14,10 +25,16 @@ namespace Console {
     static int row, col;
     //@}
 
+    /// Whether or not a keyboard is plugged before booting
+    static bool keyboard_avail;
+
     void init()
     {
         UART::init();
         Screen::init();
+
+        UsbInitialise();
+        keyboard_avail = KeyboardCount();
 
         height = Screen::height / Screen::line_height;
         width  = Screen::width  / Screen::font_width;
@@ -90,5 +107,20 @@ namespace Console {
         }
 
         Screen::paint_cursor(row, col);
+    }
+
+    int getc()
+    {
+        // Keyboard not plugged, use UART
+        if (!keyboard_avail)
+            return UART::getc();
+
+        // Wait for a keystroke
+        int ret;
+        do { 
+            KeyboardUpdate();
+            ret = KeyboardGetChar();
+        } while (ret == 0);
+        return ret;
     }
 }
