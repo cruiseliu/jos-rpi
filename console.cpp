@@ -62,14 +62,15 @@ namespace Console {
         col = 0;
     }
 
+    /// Current foreground color
+    Screen::Color color = Screen::foreground_color;
+
     /// Character next to last control character (' ', whitespace)
     const char max_control = 0x20;
 
-    void putc(int ch)
+    /// Output a character, without escaping handler
+    static void putc_no_escape(int ch)
     {
-        // Linux terminals can handle control charaters better than us
-        UART::putc(ch);
-
         switch (ch) {
             case '\b': // backspace
                 // Clear the cursor
@@ -101,12 +102,89 @@ namespace Console {
                     return;
 
                 // printable character
-                Screen::paint_char(row, col, ch);
+                Screen::paint_char(row, col, ch, color);
                 if (++col == width)
                     new_line();
         }
 
         Screen::paint_cursor(row, col);
+    }
+
+    /// Escape sequence status
+    enum EscapeMode { Normal, Entering, Escaped };
+    /// Current escape mode
+    static EscapeMode esc_mode = Normal;
+
+    /// Max escape sequence size
+    const int max_esc_size = 8;
+
+    /// Current escape sequence size
+    static int esc_size = 0;
+    /// The sequence of escape codes
+    static int esc_seq[max_esc_size];
+
+    /// Map bash style color code to pixel color format
+    const Screen::Color color_list[8] = {
+        Screen::black,
+        Screen::red,
+        Screen::green,
+        Screen::yellow,
+        Screen::blue,
+        Screen::magenta,
+        Screen::cyan,
+        Screen::gray
+    };
+
+    void putc(int ch)
+    {
+        // Linux terminals can handle escape and control charaters better than us
+        UART::putc(ch);
+
+        if (ch == '\x1b') {
+            esc_mode = Entering;
+            // drop unfinished escape sequence
+            esc_size = 0;
+
+        } else if (esc_mode == Entering) { // '\x1b' but no '['
+            if (ch == '[')
+                esc_mode = Escaped;
+
+            else {
+                // Invalid escape sequence, ignore \x1b
+                esc_mode = Normal;
+                putc_no_escape(ch);
+            }
+
+        } else if (esc_mode == Escaped) {
+            if ('0' <= ch && ch <= '9') {
+                if (esc_size == 0)
+                    esc_seq[esc_size++] = ch - '0';
+                else {
+                    esc_seq[esc_size - 1] *= 10;
+                    esc_seq[esc_size - 1] += ch - '0';
+                }
+
+            } else if (ch == ';') {
+                if (esc_size < max_esc_size)
+                    esc_size++;
+                // else drop last number
+                esc_seq[esc_size] = 0;
+
+            } else if (ch == 'm') { // color
+                for (int i = 0; i < esc_size; ++i) {
+                    if (esc_seq[i] == 0)
+                        color = Screen::foreground_color;
+                    else if (30 <= esc_seq[i] && esc_seq[i] <= 37)
+                        color = color_list[esc_seq[i] - 30];
+                    // other values (including background) not supported
+                }
+                esc_mode = Normal;
+
+            } else // unsupported escape sequence, do nothing
+                esc_mode = Normal;
+
+        } else
+            putc_no_escape(ch);
     }
 
     int getc()

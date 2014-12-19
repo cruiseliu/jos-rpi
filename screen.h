@@ -2,8 +2,6 @@
 
 #include <cstdint>
 
-typedef uint32_t Color;
-
 /**
  * @brief The RPi graphic system.
  *
@@ -17,13 +15,20 @@ typedef uint32_t Color;
  */
 
 namespace Screen {
+    typedef uint32_t Color;
 
     /// @name Predefined colors
     /// Due to endian issue, the order is 0xAABBGGRR.
     //@{
-    const Color black = 0xff000000;
-    const Color gray  = 0xffb2b2b2;
-    const Color white = 0xffffffff;
+    const Color black   = 0xff000000;
+    const Color red     = 0xff0000ff;
+    const Color green   = 0xff00ff00;
+    const Color yellow  = 0xff00ffff;
+    const Color blue    = 0xffff0000;
+    const Color magenta = 0xffff00ff;
+    const Color cyan    = 0xffffff00;
+    const Color gray    = 0xffb2b2b2;
+    const Color white   = 0xffffffff;
     //@}
 
     /// Default background color

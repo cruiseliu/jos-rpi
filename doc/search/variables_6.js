@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['keyboard_5favail',['keyboard_avail',['../namespaceConsole.html#a0c48a5bcc6a66151558190e349a24fdf',1,'Console']]]
+  ['logo',['logo',['../namespaceScreen.html#a6e85b10f46c813f53219f62cdb97504c',1,'Screen']]]
 ];

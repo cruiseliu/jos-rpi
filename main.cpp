@@ -19,7 +19,7 @@ void kernel_main()
 
     test_backtrace(5);
 
-    printf("6828 decimal is %o octal!\n", 6828);
+    printf(CBLU "6828 decimal is %o octal!\n" CEND, 6828);
 
     Monitor::run();
 }

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['console',['Console',['../namespaceConsole.html',1,'']]]
+  ['mailbox',['Mailbox',['../namespaceMailbox.html',1,'']]],
+  ['monitor',['Monitor',['../namespaceMonitor.html',1,'']]]
 ];

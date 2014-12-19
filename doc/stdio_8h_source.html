@@ -62,6 +62,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow2" class="tabs2">
     <ul class="tablist">
       <li><a href="files.html"><span>File&#160;List</span></a></li>
+      <li><a href="globals.html"><span>File&#160;Members</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -70,7 +71,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,51 +89,61 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;</div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;cstdarg&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structFILE.html">   14</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structFILE.html">FILE</a> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    void (*putc)(<span class="keywordtype">int</span> ch);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    int (*getc)();</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;};</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">extern</span> <a class="code" href="structFILE.html">FILE</a> * <span class="keyword">const</span> stdin;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">extern</span> <a class="code" href="structFILE.html">FILE</a> * <span class="keyword">const</span> stdout;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> getchar()</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordflow">return</span> stdin-&gt;getc();</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;}</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment">// The standard one returns int, but we can&#39;t do anything if it fails.</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> putchar(<span class="keywordtype">int</span> c)</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    stdout-&gt;putc(c);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;}</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="stdio_8h.html#ab93994c82cc32f5aaa86dc9fe39b3942">   16</a></span>&#160;<span class="preprocessor">#define CRED &quot;\x1b[31m&quot; </span></div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="stdio_8h.html#a106b9f1df0722c47b7865fe3eb5e20e7">   17</a></span>&#160;<span class="preprocessor">#define CGRN &quot;\x1b[32m&quot; </span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="stdio_8h.html#aa13d338394a4e19884ce26232b4f9c7c">   18</a></span>&#160;<span class="preprocessor">#define CYLW &quot;\x1b[33m&quot; </span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="stdio_8h.html#a9102ff0836b098fbba474475aa0fb259">   19</a></span>&#160;<span class="preprocessor">#define CBLU &quot;\x1b[34m&quot; </span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="stdio_8h.html#a90e4aa451b27ddde03d994400ebf76e4">   20</a></span>&#160;<span class="preprocessor">#define CMAG &quot;\x1b[35m&quot; </span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="stdio_8h.html#a4952d2edac374fbe8457c41a0e2fecfc">   21</a></span>&#160;<span class="preprocessor">#define CCYN &quot;\x1b[36m&quot; </span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="stdio_8h.html#a283da6e6504bde446407b33b014c4b54">   22</a></span>&#160;<span class="preprocessor">#define CEND &quot;\x1b[0m&quot;  </span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="structFILE.html">   25</a></span>&#160;<span class="keyword">struct </span><a class="code" href="structFILE.html">FILE</a> {</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    void (*putc)(<span class="keywordtype">int</span> ch);</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    int (*getc)();</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">extern</span> <a class="code" href="structFILE.html">FILE</a> * <span class="keyword">const</span> stdin;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keyword">extern</span> <a class="code" href="structFILE.html">FILE</a> * <span class="keyword">const</span> stdout;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">// Same to above.</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> puts(<span class="keyword">const</span> <span class="keywordtype">char</span> *s)</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;{</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordflow">for</span> (; *s; ++s)</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        putchar(*s);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    putchar(<span class="charliteral">&#39;\n&#39;</span>);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment">// We need this because puts always write trainling new line</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> fputs(<span class="keyword">const</span> <span class="keywordtype">char</span> *s, <a class="code" href="structFILE.html">FILE</a> *stream)</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;{</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keywordflow">for</span> (; *s; ++s)</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        stream-&gt;putc(*s);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;}</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">int</span> printf(<span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">int</span> vfprintf(<a class="code" href="structFILE.html">FILE</a> *stream, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list ap);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">int</span> getchar()</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordflow">return</span> stdin-&gt;getc();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;}</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment">// The standard one returns int, but we can&#39;t do anything if it fails.</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> putchar(<span class="keywordtype">int</span> c)</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    stdout-&gt;putc(c);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;}</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="comment">// Same to above.</span></div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> puts(<span class="keyword">const</span> <span class="keywordtype">char</span> *s)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">for</span> (; *s; ++s)</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        putchar(*s);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    putchar(<span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;}</div>
 <div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">// Not a stdio function in fact</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">char</span> * readline(<span class="keyword">const</span> <span class="keywordtype">char</span> *prompt);</div>
-<div class="ttc" id="structFILE_html"><div class="ttname"><a href="structFILE.html">FILE</a></div><div class="ttdef"><b>Definition:</b> stdio.h:14</div></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">// We need this because puts always write trainling new line</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keyword">static</span> <span class="keyword">inline</span> <span class="keywordtype">void</span> fputs(<span class="keyword">const</span> <span class="keywordtype">char</span> *s, <a class="code" href="structFILE.html">FILE</a> *stream)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">for</span> (; *s; ++s)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        stream-&gt;putc(*s);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;}</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">int</span> printf(<span class="keyword">const</span> <span class="keywordtype">char</span> *format, ...);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">int</span> vfprintf(<a class="code" href="structFILE.html">FILE</a> *stream, <span class="keyword">const</span> <span class="keywordtype">char</span> *format, va_list ap);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">// Not a stdio function in fact</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keywordtype">char</span> * readline(<span class="keyword">const</span> <span class="keywordtype">char</span> *prompt);</div>
+<div class="ttc" id="structFILE_html"><div class="ttname"><a href="structFILE.html">FILE</a></div><div class="ttdef"><b>Definition:</b> stdio.h:25</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 19 2014 11:13:23 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 19 2014 12:25:34 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

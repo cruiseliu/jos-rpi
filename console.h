@@ -24,6 +24,14 @@ namespace Console {
     void init();
 
     /// Output a character at current position.
+    /// You can use bash style escape sequence to change the color:
+    /// @code
+    ///     "\x1b[31mHello world!\x1b[0m" // \x1b in C equals \e in bash
+    /// @code
+    /// Or you can use the macros defined in stdio:
+    /// @code
+    ///     printf(CRED "Hello world!" CEND);
+    /// @code
     void putc(int ch);
 
     /// Get a character from user.

@@ -122,11 +122,11 @@ namespace Monitor {
 
     void run()
     {
-        puts("Welcome to the JOS kernel monitor!");
-        puts("Type 'help' for a list of commands.");
+        puts(CCYN "Welcome to the JOS kernel monitor!"  CEND);
+        puts(CCYN "Type 'help' for a list of commands." CEND);
 
         while (true) {
-            char *cmd = readline("K> ");
+            char *cmd = readline(CGRN "K> " CEND);
             if (cmd && runcmd(cmd) < 0)
                 break;
         }

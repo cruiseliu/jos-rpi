@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -83,6 +83,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -98,6 +99,12 @@ Classes</h2></td></tr>
 <tr class="memitem:structScreen_1_1Framebuffer"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#structScreen_1_1Framebuffer">Framebuffer</a></td></tr>
 <tr class="memdesc:structScreen_1_1Framebuffer"><td class="mdescLeft">&#160;</td><td class="mdescRight">Information of the framebuffer.  <a href="namespaceScreen.html#structScreen_1_1Framebuffer">More...</a><br /></td></tr>
 <tr class="separator:structScreen_1_1Framebuffer"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:abd5f4375173581f8bb4617628d1ad517"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd5f4375173581f8bb4617628d1ad517"></a>
+typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Color</b></td></tr>
+<tr class="separator:abd5f4375173581f8bb4617628d1ad517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -160,6 +167,24 @@ const Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memitem:a02bd04f0bed6a92d3816a9c00d291291"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02bd04f0bed6a92d3816a9c00d291291"></a>
 const Color&#160;</td><td class="memItemRight" valign="bottom"><b>black</b> = 0xff000000</td></tr>
 <tr class="separator:a02bd04f0bed6a92d3816a9c00d291291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43485ad68d6e2a57061a26d8a205c66a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43485ad68d6e2a57061a26d8a205c66a"></a>
+const Color&#160;</td><td class="memItemRight" valign="bottom"><b>red</b> = 0xff0000ff</td></tr>
+<tr class="separator:a43485ad68d6e2a57061a26d8a205c66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf176715d96d1c6fb2d8b897723b2c14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf176715d96d1c6fb2d8b897723b2c14"></a>
+const Color&#160;</td><td class="memItemRight" valign="bottom"><b>green</b> = 0xff00ff00</td></tr>
+<tr class="separator:acf176715d96d1c6fb2d8b897723b2c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae4083709042d3aac30965788e28bd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afae4083709042d3aac30965788e28bd0"></a>
+const Color&#160;</td><td class="memItemRight" valign="bottom"><b>yellow</b> = 0xff00ffff</td></tr>
+<tr class="separator:afae4083709042d3aac30965788e28bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3da8cac2bbd559d0443ee958f72b0666"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3da8cac2bbd559d0443ee958f72b0666"></a>
+const Color&#160;</td><td class="memItemRight" valign="bottom"><b>blue</b> = 0xffff0000</td></tr>
+<tr class="separator:a3da8cac2bbd559d0443ee958f72b0666"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac5c8c7ec3bea01697777fdc69466e75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac5c8c7ec3bea01697777fdc69466e75"></a>
+const Color&#160;</td><td class="memItemRight" valign="bottom"><b>magenta</b> = 0xffff00ff</td></tr>
+<tr class="separator:aac5c8c7ec3bea01697777fdc69466e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a550c858be332579cc7798015d0f45a4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a550c858be332579cc7798015d0f45a4c"></a>
+const Color&#160;</td><td class="memItemRight" valign="bottom"><b>cyan</b> = 0xffffff00</td></tr>
+<tr class="separator:a550c858be332579cc7798015d0f45a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a357574a0f260f04f32c9bbb058f8d92b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a357574a0f260f04f32c9bbb058f8d92b"></a>
 const Color&#160;</td><td class="memItemRight" valign="bottom"><b>gray</b> = 0xffb2b2b2</td></tr>
 <tr class="separator:a357574a0f260f04f32c9bbb058f8d92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -345,7 +370,7 @@ start Y position (not used) </td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 19 2014 11:13:23 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Dec 19 2014 12:25:34 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

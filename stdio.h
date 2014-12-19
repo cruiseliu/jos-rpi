@@ -11,6 +11,17 @@
  * `stdin` and `stdout` are set to the console, `stderr` is not supported.
  */
 
+/// @name Color control escape strings
+//@{
+#define CRED "\x1b[31m" ///< red
+#define CGRN "\x1b[32m" ///< green
+#define CYLW "\x1b[33m" ///< yellow
+#define CBLU "\x1b[34m" ///< blue
+#define CMAG "\x1b[35m" ///< magenta
+#define CCYN "\x1b[36m" ///< cyan
+#define CEND "\x1b[0m"  ///< back to default color
+//@}
+
 struct FILE {
     void (*putc)(int ch);
     int (*getc)();
