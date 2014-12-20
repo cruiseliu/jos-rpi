@@ -4,11 +4,11 @@
 
 /// Entries in the STABS table are formatted as follows.
 struct Stab {
-    uint32_t strx; /// index into string table of name
-    uint8_t type;  /// type of symbol
-    uint8_t other; /// misc info (usually empty)
-    uint16_t desc; /// description field
-    Addr value;    /// value of symbol
+    uint32_t strx; ///< index into string table of name
+    uint8_t type;  ///< type of symbol
+    uint8_t other; ///< misc info (usually empty)
+    uint16_t desc; ///< description field
+    Addr value;    ///< value of symbol
 
     /// @name Type magic number
     //@{
@@ -23,7 +23,7 @@ extern const Stab __stab_end[];	     ///< End of stabs table
 extern const char __stabstr_start[]; ///< Beginning of string table
 extern const char __stabstr_end[];   ///< End of string table
 
-DebugInfo::DebugInfo(Addr pc) : addr(pc), valid(false)
+DebugInfo::DebugInfo(uint32_t pc) : addr({pc}), valid(false)
 {
     // The SO entry
     const Stab *so  = __stab_start + 1; // convenient for boot.S
@@ -68,6 +68,9 @@ DebugInfo::DebugInfo(Addr pc) : addr(pc), valid(false)
     //assert(s[-1].type == Stab::SLINE && s[-1].value <= addr);
 
     if (s == __stab_end) return;
+
+    if (is_asm)
+        addr -= so->value;
 
     file = __stabstr_start + so->strx;
     line = (s - 1)->desc;

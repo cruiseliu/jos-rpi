@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['max_5fargc',['max_argc',['../namespaceMonitor.html#aa0c6fff954477dd7991ac34d798a2309',1,'Monitor']]],
-  ['max_5fchannel',['max_channel',['../namespaceMailbox.html#a58b901b9c1b83396d86bf03855baba47',1,'Mailbox']]]
+  ['line',['line',['../classDebugInfo.html#a2a52491b79f14a7da625e74646773cd4',1,'DebugInfo']]],
+  ['logo',['logo',['../namespaceScreen.html#a6e85b10f46c813f53219f62cdb97504c',1,'Screen']]]
 ];

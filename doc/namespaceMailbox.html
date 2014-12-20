@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -101,20 +101,20 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
-<tr class="memitem:aaa7d5754d97f95c600b3eb6f87d783fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa7d5754d97f95c600b3eb6f87d783fd"></a>
-const Addr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#aaa7d5754d97f95c600b3eb6f87d783fd">base_addr</a> = 0x2000b880</td></tr>
-<tr class="memdesc:aaa7d5754d97f95c600b3eb6f87d783fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The base address of mailbox MMIO. <br /></td></tr>
-<tr class="separator:aaa7d5754d97f95c600b3eb6f87d783fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2707bd200e14ecdc72d59a47bef4386c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2707bd200e14ecdc72d59a47bef4386c"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#a2707bd200e14ecdc72d59a47bef4386c">base_addr</a> = 0x2000b880</td></tr>
+<tr class="memdesc:a2707bd200e14ecdc72d59a47bef4386c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The base address of mailbox MMIO. <br /></td></tr>
+<tr class="separator:a2707bd200e14ecdc72d59a47bef4386c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a59481e46ff562f3be8b34cdf71c64031"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59481e46ff562f3be8b34cdf71c64031"></a>
-const Addr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#a59481e46ff562f3be8b34cdf71c64031">read_port</a> = <a class="el" href="namespaceMailbox.html#aaa7d5754d97f95c600b3eb6f87d783fd">base_addr</a> + 0x00</td></tr>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#a59481e46ff562f3be8b34cdf71c64031">read_port</a> = { <a class="el" href="namespaceMailbox.html#a2707bd200e14ecdc72d59a47bef4386c">base_addr</a> + 0x00 }</td></tr>
 <tr class="memdesc:a59481e46ff562f3be8b34cdf71c64031"><td class="mdescLeft">&#160;</td><td class="mdescRight">The port to receive message. <br /></td></tr>
 <tr class="separator:a59481e46ff562f3be8b34cdf71c64031"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a20896d342faa2ba86a23fe842596dc17"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a20896d342faa2ba86a23fe842596dc17"></a>
-const Addr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#a20896d342faa2ba86a23fe842596dc17">status_port</a> = <a class="el" href="namespaceMailbox.html#aaa7d5754d97f95c600b3eb6f87d783fd">base_addr</a> + 0x18</td></tr>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#a20896d342faa2ba86a23fe842596dc17">status_port</a> = { <a class="el" href="namespaceMailbox.html#a2707bd200e14ecdc72d59a47bef4386c">base_addr</a> + 0x18 }</td></tr>
 <tr class="memdesc:a20896d342faa2ba86a23fe842596dc17"><td class="mdescLeft">&#160;</td><td class="mdescRight">The port to check status. <br /></td></tr>
 <tr class="separator:a20896d342faa2ba86a23fe842596dc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab57b9b54935e3193c6f7ede53a707490"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab57b9b54935e3193c6f7ede53a707490"></a>
-const Addr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#ab57b9b54935e3193c6f7ede53a707490">write_port</a> = <a class="el" href="namespaceMailbox.html#aaa7d5754d97f95c600b3eb6f87d783fd">base_addr</a> + 0x20</td></tr>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMailbox.html#ab57b9b54935e3193c6f7ede53a707490">write_port</a> = { <a class="el" href="namespaceMailbox.html#a2707bd200e14ecdc72d59a47bef4386c">base_addr</a> + 0x20 }</td></tr>
 <tr class="memdesc:ab57b9b54935e3193c6f7ede53a707490"><td class="mdescLeft">&#160;</td><td class="mdescRight">The port to send message. <br /></td></tr>
 <tr class="separator:ab57b9b54935e3193c6f7ede53a707490"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adbe66b7db6591ff9fd1f4d055d1d4c3a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbe66b7db6591ff9fd1f4d055d1d4c3a"></a>
@@ -200,7 +200,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href=
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 20 2014 05:14:01 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 20 2014 15:44:51 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -70,6 +70,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="namespacemembers.html"><span>All</span></a></li>
       <li><a href="namespacemembers_func.html"><span>Functions</span></a></li>
       <li class="current"><a href="namespacemembers_vars.html"><span>Variables</span></a></li>
+      <li><a href="namespacemembers_type.html"><span>Typedefs</span></a></li>
+      <li><a href="namespacemembers_enum.html"><span>Enumerations</span></a></li>
     </ul>
   </div>
 </div><!-- top -->
@@ -78,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -93,10 +95,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 : <a class="el" href="namespaceScreen.html#a8c4ceb867740748818f08c035518b572">Screen</a>
 </li>
 <li>base_addr
-: <a class="el" href="namespaceMailbox.html#aaa7d5754d97f95c600b3eb6f87d783fd">Mailbox</a>
+: <a class="el" href="namespaceMailbox.html#a2707bd200e14ecdc72d59a47bef4386c">Mailbox</a>
 </li>
 <li>channel_mask
 : <a class="el" href="namespaceMailbox.html#a0e7b22cc1ee2476b08029dce20d344c8">Mailbox</a>
+</li>
+<li>color
+: <a class="el" href="namespaceConsole.html#a93c054ed5880d4acbf10179689ebf560">Console</a>
+</li>
+<li>color_list
+: <a class="el" href="namespaceConsole.html#a8ea23ebdab2a5ba6f74df883637c03ab">Console</a>
 </li>
 <li>commands
 : <a class="el" href="namespaceMonitor.html#a47c331a77085d0236cf4c11badee6522">Monitor</a>
@@ -106,6 +114,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>empty
 : <a class="el" href="namespaceMailbox.html#adbe66b7db6591ff9fd1f4d055d1d4c3a">Mailbox</a>
+</li>
+<li>esc_mode
+: <a class="el" href="namespaceConsole.html#ab5148fc0db578610c8860dcb45dfd086">Console</a>
+</li>
+<li>esc_seq
+: <a class="el" href="namespaceConsole.html#a09452bf4ebc809b79e336cb9f60af075">Console</a>
+</li>
+<li>esc_size
+: <a class="el" href="namespaceConsole.html#abec6d804a1da2a45ad6544b19c08293d">Console</a>
 </li>
 <li>fb
 : <a class="el" href="namespaceScreen.html#a7f3f4f45f69f7386e5841c2ce38591fc">Screen</a>
@@ -128,6 +145,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <li>gpu_mailbox
 : <a class="el" href="namespaceScreen.html#a0b70d75db78359b6c4e2ffbcdf98cd2f">Screen</a>
 </li>
+<li>keyboard_avail
+: <a class="el" href="namespaceConsole.html#a0c48a5bcc6a66151558190e349a24fdf">Console</a>
+</li>
 <li>logo
 : <a class="el" href="namespaceScreen.html#a6e85b10f46c813f53219f62cdb97504c">Screen</a>
 </li>
@@ -136,6 +156,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </li>
 <li>max_channel
 : <a class="el" href="namespaceMailbox.html#a58b901b9c1b83396d86bf03855baba47">Mailbox</a>
+</li>
+<li>max_control
+: <a class="el" href="namespaceConsole.html#a94c58bf6aaadcaef7747cf228d0ea814">Console</a>
+</li>
+<li>max_esc_size
+: <a class="el" href="namespaceConsole.html#aa83b55e91efc55d6446f6a8b06ae7b3b">Console</a>
 </li>
 <li>read_port
 : <a class="el" href="namespaceMailbox.html#a59481e46ff562f3be8b34cdf71c64031">Mailbox</a>
@@ -153,7 +179,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 20 2014 05:14:01 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 20 2014 15:44:51 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "common.h"
+#include "addr.h"
 
 /**
  * @brief Get debug information of a program counter from stabs.
@@ -25,7 +25,7 @@
 class DebugInfo {
 public:
     /// Prepare the infomation, note that the parameter is pc rather than lr.
-    DebugInfo(Addr pc);
+    DebugInfo(uint32_t pc);
 
     /// Print all information to stdout.
     void show();

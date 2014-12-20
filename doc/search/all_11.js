@@ -9,5 +9,6 @@ var searchData=
   ['stab',['Stab',['../structStab.html',1,'']]],
   ['status_5fport',['status_port',['../namespaceMailbox.html#a20896d342faa2ba86a23fe842596dc17',1,'Mailbox']]],
   ['stdio_2eh',['stdio.h',['../stdio_8h.html',1,'']]],
-  ['string_2eh',['string.h',['../string_8h.html',1,'']]]
+  ['string_2eh',['string.h',['../string_8h.html',1,'']]],
+  ['strx',['strx',['../structStab.html#a6d37a893cbd3d4688b05e74547c0dbbb',1,'Stab']]]
 ];

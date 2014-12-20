@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,6 +82,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#enum-members">Enumerations</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
@@ -92,6 +93,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>A wrapper around I/O devices.  
 <a href="#details">More...</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:a71754d81bbad3150d3e099a30985c562"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a71754d81bbad3150d3e099a30985c562"></a>enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a71754d81bbad3150d3e099a30985c562">EscapeMode</a> { <b>Normal</b>, 
+<b>Entering</b>, 
+<b>Escaped</b>
+ }</td></tr>
+<tr class="memdesc:a71754d81bbad3150d3e099a30985c562"><td class="mdescLeft">&#160;</td><td class="mdescRight">Escape sequence status. <br /></td></tr>
+<tr class="separator:a71754d81bbad3150d3e099a30985c562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a134738ea8002554c08cece0737db9534"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a134738ea8002554c08cece0737db9534"></a>
@@ -102,11 +112,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#adaead0b7c1658789709f6ff136fb139e">new_line</a> ()</td></tr>
 <tr class="memdesc:adaead0b7c1658789709f6ff136fb139e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new line on the screen. <br /></td></tr>
 <tr class="separator:adaead0b7c1658789709f6ff136fb139e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a995871beede3884470e83ef4334321fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a995871beede3884470e83ef4334321fb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a995871beede3884470e83ef4334321fb">putc</a> (int ch)</td></tr>
-<tr class="memdesc:a995871beede3884470e83ef4334321fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output a character at current position. <br /></td></tr>
+<tr class="memitem:a2a38d513a11ef68b5061bd83d3d5c650"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2a38d513a11ef68b5061bd83d3d5c650"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a2a38d513a11ef68b5061bd83d3d5c650">putc_no_escape</a> (int ch)</td></tr>
+<tr class="memdesc:a2a38d513a11ef68b5061bd83d3d5c650"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output a character, without escaping handler. <br /></td></tr>
+<tr class="separator:a2a38d513a11ef68b5061bd83d3d5c650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a995871beede3884470e83ef4334321fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a995871beede3884470e83ef4334321fb">putc</a> (int ch)</td></tr>
+<tr class="memdesc:a995871beede3884470e83ef4334321fb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output a character at current position.  <a href="#a995871beede3884470e83ef4334321fb">More...</a><br /></td></tr>
 <tr class="separator:a995871beede3884470e83ef4334321fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d7f8dd950d583c4c5b5afd7ea1341b1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a7d7f8dd950d583c4c5b5afd7ea1341b1">getc</a> ()</td></tr>
+<tr class="memdesc:a7d7f8dd950d583c4c5b5afd7ea1341b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a character from user.  <a href="#a7d7f8dd950d583c4c5b5afd7ea1341b1">More...</a><br /></td></tr>
 <tr class="separator:a7d7f8dd950d583c4c5b5afd7ea1341b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
@@ -115,10 +129,33 @@ Variables</h2></td></tr>
 static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a0c48a5bcc6a66151558190e349a24fdf">keyboard_avail</a></td></tr>
 <tr class="memdesc:a0c48a5bcc6a66151558190e349a24fdf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Whether or not a keyboard is plugged before booting. <br /></td></tr>
 <tr class="separator:a0c48a5bcc6a66151558190e349a24fdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c054ed5880d4acbf10179689ebf560"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a93c054ed5880d4acbf10179689ebf560"></a>
+<a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Screen::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a93c054ed5880d4acbf10179689ebf560">color</a> = <a class="el" href="namespaceScreen.html#afd263c83d0d1234d660888b13a95cf7c">Screen::foreground_color</a></td></tr>
+<tr class="memdesc:a93c054ed5880d4acbf10179689ebf560"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current foreground color. <br /></td></tr>
+<tr class="separator:a93c054ed5880d4acbf10179689ebf560"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94c58bf6aaadcaef7747cf228d0ea814"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a94c58bf6aaadcaef7747cf228d0ea814"></a>
 const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a94c58bf6aaadcaef7747cf228d0ea814">max_control</a> = 0x20</td></tr>
 <tr class="memdesc:a94c58bf6aaadcaef7747cf228d0ea814"><td class="mdescLeft">&#160;</td><td class="mdescRight">Character next to last control character (' ', whitespace) <br /></td></tr>
 <tr class="separator:a94c58bf6aaadcaef7747cf228d0ea814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5148fc0db578610c8860dcb45dfd086"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5148fc0db578610c8860dcb45dfd086"></a>
+static <a class="el" href="namespaceConsole.html#a71754d81bbad3150d3e099a30985c562">EscapeMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#ab5148fc0db578610c8860dcb45dfd086">esc_mode</a> = Normal</td></tr>
+<tr class="memdesc:ab5148fc0db578610c8860dcb45dfd086"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current escape mode. <br /></td></tr>
+<tr class="separator:ab5148fc0db578610c8860dcb45dfd086"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa83b55e91efc55d6446f6a8b06ae7b3b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa83b55e91efc55d6446f6a8b06ae7b3b"></a>
+const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#aa83b55e91efc55d6446f6a8b06ae7b3b">max_esc_size</a> = 8</td></tr>
+<tr class="memdesc:aa83b55e91efc55d6446f6a8b06ae7b3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Max escape sequence size. <br /></td></tr>
+<tr class="separator:aa83b55e91efc55d6446f6a8b06ae7b3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec6d804a1da2a45ad6544b19c08293d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abec6d804a1da2a45ad6544b19c08293d"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#abec6d804a1da2a45ad6544b19c08293d">esc_size</a> = 0</td></tr>
+<tr class="memdesc:abec6d804a1da2a45ad6544b19c08293d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current escape sequence size. <br /></td></tr>
+<tr class="separator:abec6d804a1da2a45ad6544b19c08293d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09452bf4ebc809b79e336cb9f60af075"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09452bf4ebc809b79e336cb9f60af075"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a09452bf4ebc809b79e336cb9f60af075">esc_seq</a> [<a class="el" href="namespaceConsole.html#aa83b55e91efc55d6446f6a8b06ae7b3b">max_esc_size</a>]</td></tr>
+<tr class="memdesc:a09452bf4ebc809b79e336cb9f60af075"><td class="mdescLeft">&#160;</td><td class="mdescRight">The sequence of escape codes. <br /></td></tr>
+<tr class="separator:a09452bf4ebc809b79e336cb9f60af075"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ea23ebdab2a5ba6f74df883637c03ab"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Screen::Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceConsole.html#a8ea23ebdab2a5ba6f74df883637c03ab">color_list</a> [8]</td></tr>
+<tr class="memdesc:a8ea23ebdab2a5ba6f74df883637c03ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">Map bash style color code to pixel color format.  <a href="#a8ea23ebdab2a5ba6f74df883637c03ab">More...</a><br /></td></tr>
+<tr class="separator:a8ea23ebdab2a5ba6f74df883637c03ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Screen size, counted by characters</div></td></tr>
 <tr class="memitem:a362b7011264a831ce935267d52984f61"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a362b7011264a831ce935267d52984f61"></a>
 static int&#160;</td><td class="memItemRight" valign="bottom"><b>height</b></td></tr>
@@ -153,14 +190,61 @@ static int&#160;</td><td class="memItemRight" valign="bottom"><b>col</b></td></t
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Get a character from user. If a USB keyboard is plugged before booting, the keyboard will be used. Otherwise we will get a character from UART. Hot-plug is not supported. </p>
+
+<p>Get a character from user. </p>
+<p>If a USB keyboard is plugged before booting, the keyboard will be used. Otherwise we will get a character from UART. Hot-plug is not supported. </p>
+
+</div>
+</div>
+<a class="anchor" id="a995871beede3884470e83ef4334321fb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Console::putc </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ch</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Output a character at current position. </p>
+<p>You can use bash style escape sequence to change the color: </p><div class="fragment"><div class="line"><span class="stringliteral">&quot;\x1b[31mHello world!\x1b[0m&quot;</span> <span class="comment">// \x1b in C equals \e in bash</span></div>
+</div><!-- fragment --><p> Or you can use the macros defined in stdio: </p><div class="fragment"><div class="line">printf(<a class="code" href="stdio_8h.html#ab93994c82cc32f5aaa86dc9fe39b3942">CRED</a> <span class="stringliteral">&quot;Hello world!&quot;</span> <a class="code" href="stdio_8h.html#a283da6e6504bde446407b33b014c4b54">CEND</a>);</div>
+</div><!-- fragment --> 
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a8ea23ebdab2a5ba6f74df883637c03ab"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Screen::Color</a> Console::color_list[8]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">        Screen::black,</div>
+<div class="line">        Screen::red,</div>
+<div class="line">        Screen::green,</div>
+<div class="line">        Screen::yellow,</div>
+<div class="line">        Screen::blue,</div>
+<div class="line">        Screen::magenta,</div>
+<div class="line">        Screen::cyan,</div>
+<div class="line">        Screen::gray</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p>Map bash style color code to pixel color format. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Dec 19 2014 11:13:23 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 20 2014 15:44:51 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

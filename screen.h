@@ -15,10 +15,10 @@
  */
 
 namespace Screen {
+    /// Due to endian issue, the order is 0xAABBGGRR.
     typedef uint32_t Color;
 
     /// @name Predefined colors
-    /// Due to endian issue, the order is 0xAABBGGRR.
     //@{
     const Color black   = 0xff000000;
     const Color red     = 0xff0000ff;

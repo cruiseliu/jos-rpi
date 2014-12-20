@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['y',['y',['../namespaceScreen.html#ab17dbe5b0904fbfe9d4017fbd534c25b',1,'Screen::Framebuffer']]]
+  ['x',['x',['../namespaceScreen.html#ad36e5bcbc6eea73ee59515db73d383df',1,'Screen::Framebuffer']]]
 ];

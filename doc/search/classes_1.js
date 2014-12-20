@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['debuginfo',['DebugInfo',['../classDebugInfo.html',1,'']]]
+  ['command',['Command',['../structMonitor_1_1Command.html',1,'Monitor']]]
 ];

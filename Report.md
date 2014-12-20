@@ -13,7 +13,8 @@ monitor.h <BR> monitor.cpp      | 内核 shell
 kdebug.h <BR> kdebug.cpp        | 获取函数名和行号等调试信息
 stdio.h <BR> stdio.cpp          | 将 Console 封装成标准库格式
 string.h <BR> string.cpp        | 类似标准库
-common.h                        | 通用的 typedef 及函数
+addr.h                          | 地址/指针类型
+arm.h                           | 内联 ARM 指令
 lib/\_*div*.S                   | 除法库, 来自 Chromium OS
 lib/libcsud.a<BR>lib/keyboard.S | 键盘驱动, 来自剑桥教程
 

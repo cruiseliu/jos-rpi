@@ -10,8 +10,15 @@ Use `mkdir -p build/lib && make` to build.
 
 You will find `kernel.elf` and `kernel.img` in project directory.
 
-If you have a Raspberry Pi with RASPBIAN, copy `kernel.img` to the boot partition and connect your computer to it's UART port.
-You can use [raspbootin](https://github.com/mrvn/raspbootin) to simplify this progress.
+If you have a Raspberry Pi with Raspbian, copy `kernel.img` to the boot partition and add following lines to `config.txt`:
+
+    framebuffer_depth=32
+    fraembuffer_ignore_alpha=1
+
+You can either connect your RPi's UART port to computer and use it as a TTY, or use it directly by HDMI display and USB keyboard.
+Please note that UART input is disabled when a keyboard is found.
+
+You may use [raspbootin](https://github.com/mrvn/raspbootin) to simplify UART configuration.
 
 If you prefer an emulator such as [QEMU](https://github.com/Torlus/qemu/tree/rpi), just load `kernel.elf`.
 

@@ -67,9 +67,9 @@ namespace Monitor {
     {
         // A new way to get register value
         register uint32_t reg_fp asm ("fp");
-        uint32_t *fp = (uint32_t *) reg_fp;
+        Addr fp {reg_fp};
 
-        for (; fp; fp = (uint32_t *) fp[-1]) {
+        for (; fp; fp = {fp[-1]}) {
             printf("fp %08x  lr %08x\n", fp[-1], fp[0]);
             DebugInfo(fp[0] - 4).show();
         }

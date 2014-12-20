@@ -1,17 +1,20 @@
 #include "screen.h"
-#include "common.h"
+#include "addr.h"
+#include "arm.h"
+
+typedef uint32_t Bitset;
 
 /// @brief The mechanism used to trasferring data between CPU and GPU
 namespace Mailbox {
     /// The base address of mailbox MMIO
-    const Addr base_addr = 0x2000b880;
+    const uint32_t base_addr = 0x2000b880;
 
     /// The port to receive message
-    const Addr read_port   = base_addr + 0x00;
+    const Addr read_port   = { base_addr + 0x00 };
     /// The port to check status
-    const Addr status_port = base_addr + 0x18;
+    const Addr status_port = { base_addr + 0x18 };
     /// The port to send message
-    const Addr write_port  = base_addr + 0x20;
+    const Addr write_port  = { base_addr + 0x20 };
 
     /// This bit indicating the mailbox is empty
     const Bitset empty = 1 << 30;

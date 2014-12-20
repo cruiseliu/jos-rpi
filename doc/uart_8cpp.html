@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -82,8 +82,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">uart.cpp File Reference</div>  </div>
 </div><!--header-->
@@ -92,66 +92,72 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <p>This file is copied from raspbootin.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="uart_8h_source.html">uart.h</a>&quot;</code><br />
-<code>#include &quot;common.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="arm_8h_source.html">arm.h</a>&quot;</code><br />
 </div><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
-Enumerations</h2></td></tr>
-<tr class="memitem:a1f65231ca34f2312fbdff1eccd75eff6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f65231ca34f2312fbdff1eccd75eff6"></a>enum &#160;</td><td class="memItemRight" valign="bottom">{ <br />
-&#160;&#160;<b>GPIO_BASE</b> = 0x20200000, 
-<b>GPPUD</b> = (GPIO_BASE + 0x94), 
-<b>GPPUDCLK0</b> = (GPIO_BASE + 0x98), 
-<b>UART0_BASE</b> = 0x20201000, 
-<br />
-&#160;&#160;<b>UART0_DR</b> = (UART0_BASE + 0x00), 
-<b>UART0_RSRECR</b> = (UART0_BASE + 0x04), 
-<b>UART0_FR</b> = (UART0_BASE + 0x18), 
-<b>UART0_ILPR</b> = (UART0_BASE + 0x20), 
-<br />
-&#160;&#160;<b>UART0_IBRD</b> = (UART0_BASE + 0x24), 
-<b>UART0_FBRD</b> = (UART0_BASE + 0x28), 
-<b>UART0_LCRH</b> = (UART0_BASE + 0x2C), 
-<b>UART0_CR</b> = (UART0_BASE + 0x30), 
-<br />
-&#160;&#160;<b>UART0_IFLS</b> = (UART0_BASE + 0x34), 
-<b>UART0_IMSC</b> = (UART0_BASE + 0x38), 
-<b>UART0_RIS</b> = (UART0_BASE + 0x3C), 
-<b>UART0_MIS</b> = (UART0_BASE + 0x40), 
-<br />
-&#160;&#160;<b>UART0_ICR</b> = (UART0_BASE + 0x44), 
-<b>UART0_DMACR</b> = (UART0_BASE + 0x48), 
-<b>UART0_ITCR</b> = (UART0_BASE + 0x80), 
-<b>UART0_ITIP</b> = (UART0_BASE + 0x84), 
-<br />
-&#160;&#160;<b>UART0_ITOP</b> = (UART0_BASE + 0x88), 
-<b>UART0_TDR</b> = (UART0_BASE + 0x8C)
-<br />
- }</td></tr>
-<tr class="separator:a1f65231ca34f2312fbdff1eccd75eff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afec597aaa3f199325eb272dff30826a0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afec597aaa3f199325eb272dff30826a0"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::delay</b> (int32_t count)</td></tr>
-<tr class="separator:afec597aaa3f199325eb272dff30826a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9213c4d87b038b6de4e9df2023426053"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9213c4d87b038b6de4e9df2023426053"></a>
+static void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::delay</b> (int32_t cycle)</td></tr>
+<tr class="memdesc:a9213c4d87b038b6de4e9df2023426053"><td class="mdescLeft">&#160;</td><td class="mdescRight">Delay given cycles. <br /></td></tr>
+<tr class="separator:a9213c4d87b038b6de4e9df2023426053"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa0aa7746d1fe6a12bf48aa30fb14bde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa0aa7746d1fe6a12bf48aa30fb14bde"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::init</b> (void)</td></tr>
+<tr class="memdesc:afa0aa7746d1fe6a12bf48aa30fb14bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize UART0. <br /></td></tr>
 <tr class="separator:afa0aa7746d1fe6a12bf48aa30fb14bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf0204b571bf327552adecfcd8e54a43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf0204b571bf327552adecfcd8e54a43"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::putc</b> (int byte)</td></tr>
+<tr class="memdesc:acf0204b571bf327552adecfcd8e54a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit a byte via UART0. <br /></td></tr>
 <tr class="separator:acf0204b571bf327552adecfcd8e54a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12da6e1716022bb707d0012c10d241f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12da6e1716022bb707d0012c10d241f9"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>UART::getc</b> (void)</td></tr>
+<tr class="memdesc:a12da6e1716022bb707d0012c10d241f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive a byte via UART0. <br /></td></tr>
 <tr class="separator:a12da6e1716022bb707d0012c10d241f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af446154141f895a94382e76c32396cc4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af446154141f895a94382e76c32396cc4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::puts</b> (const char *str)</td></tr>
-<tr class="separator:af446154141f895a94382e76c32396cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ace76e0f7dc62c99758dc045411bdd4d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ace76e0f7dc62c99758dc045411bdd4d0"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>UART::gpio_base</b> = 0x20200000</td></tr>
+<tr class="separator:ace76e0f7dc62c99758dc045411bdd4d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6b007626bbbd2079186e9fd95b6a529"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae6b007626bbbd2079186e9fd95b6a529"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::gppud</b> = { gpio_base + 0x94 }</td></tr>
+<tr class="separator:ae6b007626bbbd2079186e9fd95b6a529"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bddb5015eb63f7d8109e19bf2554c6b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bddb5015eb63f7d8109e19bf2554c6b"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::gppudclk0</b> = { gpio_base + 0x98 }</td></tr>
+<tr class="separator:a4bddb5015eb63f7d8109e19bf2554c6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad50d8ed5b60dae68208610284451cdd8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad50d8ed5b60dae68208610284451cdd8"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_base</b> = 0x20201000</td></tr>
+<tr class="separator:ad50d8ed5b60dae68208610284451cdd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2d5bc491309ee71f91aa9a59a29fede"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2d5bc491309ee71f91aa9a59a29fede"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_dr</b> = { uart0_base + 0x00 }</td></tr>
+<tr class="separator:af2d5bc491309ee71f91aa9a59a29fede"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1151b2067d17ee6f322929aaaef4877b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1151b2067d17ee6f322929aaaef4877b"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_fr</b> = { uart0_base + 0x18 }</td></tr>
+<tr class="separator:a1151b2067d17ee6f322929aaaef4877b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b116cb9565ff3fdf78ceea4d05b3845"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1b116cb9565ff3fdf78ceea4d05b3845"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_ibrd</b> = { uart0_base + 0x24 }</td></tr>
+<tr class="separator:a1b116cb9565ff3fdf78ceea4d05b3845"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e944704a1b993d7f6806f3a15cdf682"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7e944704a1b993d7f6806f3a15cdf682"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_fbrd</b> = { uart0_base + 0x28 }</td></tr>
+<tr class="separator:a7e944704a1b993d7f6806f3a15cdf682"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba979b94136456bdc1730790328a2113"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aba979b94136456bdc1730790328a2113"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_lcrh</b> = { uart0_base + 0x2c }</td></tr>
+<tr class="separator:aba979b94136456bdc1730790328a2113"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399689501241383ae4fcc80c18dd6b4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a399689501241383ae4fcc80c18dd6b4b"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_cr</b> = { uart0_base + 0x30 }</td></tr>
+<tr class="separator:a399689501241383ae4fcc80c18dd6b4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12e7da4d44209accf959edb3afc4dbc1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12e7da4d44209accf959edb3afc4dbc1"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_imsc</b> = { uart0_base + 0x38 }</td></tr>
+<tr class="separator:a12e7da4d44209accf959edb3afc4dbc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64933febc4ca8521430f932d80feaf57"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64933febc4ca8521430f932d80feaf57"></a>
+const <a class="el" href="structAddr.html">Addr</a>&#160;</td><td class="memItemRight" valign="bottom"><b>UART::uart0_icr</b> = { uart0_base + 0x44 }</td></tr>
+<tr class="separator:a64933febc4ca8521430f932d80feaf57"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file is copied from raspbootin. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 20 2014 05:14:01 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 20 2014 15:44:51 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

@@ -19,36 +19,17 @@
    Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 */
 
-#ifndef UART_H
-#define UART_H
+#pragma once
 
-#include <stdint.h>
+#include <cstdint>
 
 namespace UART {
-    /*
-     * Initialize UART0.
-     */
+    /// @brief Initialize UART0.
     void init(void);
 
-    /*
-     * Transmit a byte via UART0.
-     * uint8_t Byte: byte to send.
-     */
+    /// @brief Transmit a byte via UART0.
     void putc(int byte);
 
-    /*
-     * Receive a byte via UART0.
-     *
-     * Returns:
-     * uint8_t: byte received.
-     */
+    /// @brief Receive a byte via UART0.
     int getc(void);
-
-    /*
-     * print a string to the UART one character at a time
-     * const char *str: 0-terminated string
-     */
-    void puts(const char *str);
 }
-
-#endif // #ifndef UART_H

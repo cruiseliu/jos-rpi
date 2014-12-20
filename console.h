@@ -23,18 +23,20 @@ namespace Console {
     /// Initialize the console (and underlying I/O devices)
     void init();
 
-    /// Output a character at current position.
+    /// @brief Output a character at current position.
+    ///
     /// You can use bash style escape sequence to change the color:
     /// @code
     ///     "\x1b[31mHello world!\x1b[0m" // \x1b in C equals \e in bash
-    /// @code
+    /// @endcode
     /// Or you can use the macros defined in stdio:
     /// @code
     ///     printf(CRED "Hello world!" CEND);
-    /// @code
+    /// @endcode
     void putc(int ch);
 
-    /// Get a character from user.
+    /// @brief Get a character from user.
+    ///
     /// If a USB keyboard is plugged before booting, the keyboard will be used.
     /// Otherwise we will get a character from UART. Hot-plug is not supported.
     int getc();

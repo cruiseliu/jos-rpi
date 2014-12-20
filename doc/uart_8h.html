@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -90,7 +90,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This file is copied from raspbootin.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
 </div>
 <p><a href="uart_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -98,23 +98,23 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 Functions</h2></td></tr>
 <tr class="memitem:afa0aa7746d1fe6a12bf48aa30fb14bde"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afa0aa7746d1fe6a12bf48aa30fb14bde"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::init</b> (void)</td></tr>
+<tr class="memdesc:afa0aa7746d1fe6a12bf48aa30fb14bde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize UART0. <br /></td></tr>
 <tr class="separator:afa0aa7746d1fe6a12bf48aa30fb14bde"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf0204b571bf327552adecfcd8e54a43"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf0204b571bf327552adecfcd8e54a43"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::putc</b> (int byte)</td></tr>
+<tr class="memdesc:acf0204b571bf327552adecfcd8e54a43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transmit a byte via UART0. <br /></td></tr>
 <tr class="separator:acf0204b571bf327552adecfcd8e54a43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a12da6e1716022bb707d0012c10d241f9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a12da6e1716022bb707d0012c10d241f9"></a>
 int&#160;</td><td class="memItemRight" valign="bottom"><b>UART::getc</b> (void)</td></tr>
+<tr class="memdesc:a12da6e1716022bb707d0012c10d241f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Receive a byte via UART0. <br /></td></tr>
 <tr class="separator:a12da6e1716022bb707d0012c10d241f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af446154141f895a94382e76c32396cc4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af446154141f895a94382e76c32396cc4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UART::puts</b> (const char *str)</td></tr>
-<tr class="separator:af446154141f895a94382e76c32396cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This file is copied from raspbootin. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 20 2014 05:14:01 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 20 2014 15:44:51 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>

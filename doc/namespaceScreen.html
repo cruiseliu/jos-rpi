@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Pages</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Namespaces</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Typedefs</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Enumerations</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Macros</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(9)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -103,7 +103,8 @@ Classes</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:abd5f4375173581f8bb4617628d1ad517"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abd5f4375173581f8bb4617628d1ad517"></a>
-typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>Color</b></td></tr>
+typedef uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a></td></tr>
+<tr class="memdesc:abd5f4375173581f8bb4617628d1ad517"><td class="mdescLeft">&#160;</td><td class="mdescRight">Due to endian issue, the order is 0xAABBGGRR. <br /></td></tr>
 <tr class="separator:abd5f4375173581f8bb4617628d1ad517"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
@@ -117,17 +118,17 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="name
 <tr class="memdesc:a83b1198dc25fb5134437c49bbcaf1cca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the framebuffer up. The function will stuck if it fails, and you will see the 4-color gradient screen. <br /></td></tr>
 <tr class="separator:a83b1198dc25fb5134437c49bbcaf1cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c9ad62bb328f4507cd534b07072c823"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2c9ad62bb328f4507cd534b07072c823"></a>
-static Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a2c9ad62bb328f4507cd534b07072c823">get_pixel</a> (int row, int col)</td></tr>
+static <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a2c9ad62bb328f4507cd534b07072c823">get_pixel</a> (int row, int col)</td></tr>
 <tr class="memdesc:a2c9ad62bb328f4507cd534b07072c823"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the color of pixel at (row,col). <br /></td></tr>
 <tr class="separator:a2c9ad62bb328f4507cd534b07072c823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad399893c23ad58db28401ed5befcaecb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad399893c23ad58db28401ed5befcaecb"></a>
-static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#ad399893c23ad58db28401ed5befcaecb">set_pixel</a> (int row, int col, Color color)</td></tr>
+static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#ad399893c23ad58db28401ed5befcaecb">set_pixel</a> (int row, int col, <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a> color)</td></tr>
 <tr class="memdesc:ad399893c23ad58db28401ed5befcaecb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pixel at (row,col) to given color. <br /></td></tr>
 <tr class="separator:ad399893c23ad58db28401ed5befcaecb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab09f9cacc6ff1cf6481be144777ac0e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#ab09f9cacc6ff1cf6481be144777ac0e2">paint_char</a> (int row, int col, uint8_t ch, Color color)</td></tr>
+<tr class="memitem:ab09f9cacc6ff1cf6481be144777ac0e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#ab09f9cacc6ff1cf6481be144777ac0e2">paint_char</a> (int row, int col, uint8_t ch, <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a> color)</td></tr>
 <tr class="separator:ab09f9cacc6ff1cf6481be144777ac0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ef5662a3d32f36db13e7c2e732b6b1a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7ef5662a3d32f36db13e7c2e732b6b1a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a7ef5662a3d32f36db13e7c2e732b6b1a">clear_char</a> (int row, int column, Color color=<a class="el" href="namespaceScreen.html#a8c4ceb867740748818f08c035518b572">background_color</a>)</td></tr>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a7ef5662a3d32f36db13e7c2e732b6b1a">clear_char</a> (int row, int column, <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a> color=<a class="el" href="namespaceScreen.html#a8c4ceb867740748818f08c035518b572">background_color</a>)</td></tr>
 <tr class="memdesc:a7ef5662a3d32f36db13e7c2e732b6b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear a character, similar to paint_char. <br /></td></tr>
 <tr class="separator:a7ef5662a3d32f36db13e7c2e732b6b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a806f6b475244f2e20adcbe16dbb172e6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a806f6b475244f2e20adcbe16dbb172e6"></a>
@@ -154,42 +155,40 @@ const Bitset&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="memdesc:aacb3bf7fe8a0b1faf8e48d6b9c74ed81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the 30th bit to flush screen, said by [2]. <br /></td></tr>
 <tr class="separator:aacb3bf7fe8a0b1faf8e48d6b9c74ed81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c4ceb867740748818f08c035518b572"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c4ceb867740748818f08c035518b572"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a8c4ceb867740748818f08c035518b572">background_color</a> = black</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a8c4ceb867740748818f08c035518b572">background_color</a> = black</td></tr>
 <tr class="memdesc:a8c4ceb867740748818f08c035518b572"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default background color. <br /></td></tr>
 <tr class="separator:a8c4ceb867740748818f08c035518b572"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd263c83d0d1234d660888b13a95cf7c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afd263c83d0d1234d660888b13a95cf7c"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#afd263c83d0d1234d660888b13a95cf7c">foreground_color</a> = gray</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#afd263c83d0d1234d660888b13a95cf7c">foreground_color</a> = gray</td></tr>
 <tr class="memdesc:afd263c83d0d1234d660888b13a95cf7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default foreground (text) color. <br /></td></tr>
 <tr class="separator:afd263c83d0d1234d660888b13a95cf7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Predefined colors</div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p>Due to endian issue, the order is 0xAABBGGRR. </p>
-</div></td></tr>
 <tr class="memitem:a02bd04f0bed6a92d3816a9c00d291291"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a02bd04f0bed6a92d3816a9c00d291291"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>black</b> = 0xff000000</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>black</b> = 0xff000000</td></tr>
 <tr class="separator:a02bd04f0bed6a92d3816a9c00d291291"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43485ad68d6e2a57061a26d8a205c66a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a43485ad68d6e2a57061a26d8a205c66a"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>red</b> = 0xff0000ff</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>red</b> = 0xff0000ff</td></tr>
 <tr class="separator:a43485ad68d6e2a57061a26d8a205c66a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acf176715d96d1c6fb2d8b897723b2c14"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acf176715d96d1c6fb2d8b897723b2c14"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>green</b> = 0xff00ff00</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>green</b> = 0xff00ff00</td></tr>
 <tr class="separator:acf176715d96d1c6fb2d8b897723b2c14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afae4083709042d3aac30965788e28bd0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afae4083709042d3aac30965788e28bd0"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>yellow</b> = 0xff00ffff</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>yellow</b> = 0xff00ffff</td></tr>
 <tr class="separator:afae4083709042d3aac30965788e28bd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3da8cac2bbd559d0443ee958f72b0666"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3da8cac2bbd559d0443ee958f72b0666"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>blue</b> = 0xffff0000</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>blue</b> = 0xffff0000</td></tr>
 <tr class="separator:a3da8cac2bbd559d0443ee958f72b0666"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aac5c8c7ec3bea01697777fdc69466e75"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aac5c8c7ec3bea01697777fdc69466e75"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>magenta</b> = 0xffff00ff</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>magenta</b> = 0xffff00ff</td></tr>
 <tr class="separator:aac5c8c7ec3bea01697777fdc69466e75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a550c858be332579cc7798015d0f45a4c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a550c858be332579cc7798015d0f45a4c"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>cyan</b> = 0xffffff00</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>cyan</b> = 0xffffff00</td></tr>
 <tr class="separator:a550c858be332579cc7798015d0f45a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a357574a0f260f04f32c9bbb058f8d92b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a357574a0f260f04f32c9bbb058f8d92b"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>gray</b> = 0xffb2b2b2</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gray</b> = 0xffb2b2b2</td></tr>
 <tr class="separator:a357574a0f260f04f32c9bbb058f8d92b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d641d5b58dba5743dce049fb8eef761"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4d641d5b58dba5743dce049fb8eef761"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><b>white</b> = 0xffffffff</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><b>white</b> = 0xffffffff</td></tr>
 <tr class="separator:a4d641d5b58dba5743dce049fb8eef761"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">Screen settings</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>The width and height are hard-coded. Maybe we can detect it by some way, but let's make it simple. The color depth is 32 bits with alpha disabled in config.txt. We do not use 24 bit because the GPU reads framebuffer byte by byte, so we can't use a simple data type to represents a 24 bit pixel. </p>
@@ -238,7 +237,7 @@ const int&#160;</td><td class="memItemRight" valign="bottom"><b>logo_width</b> =
 const int&#160;</td><td class="memItemRight" valign="bottom"><b>logo_height</b> = 88</td></tr>
 <tr class="separator:af69bff1a89fcd967b506a888f9780018"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6e85b10f46c813f53219f62cdb97504c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6e85b10f46c813f53219f62cdb97504c"></a>
-const Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a6e85b10f46c813f53219f62cdb97504c">logo</a> [logo_height][logo_width]</td></tr>
+const <a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScreen.html#a6e85b10f46c813f53219f62cdb97504c">logo</a> [logo_height][logo_width]</td></tr>
 <tr class="memdesc:a6e85b10f46c813f53219f62cdb97504c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The bitmap logo defined in logo.cpp. <br /></td></tr>
 <tr class="separator:a6e85b10f46c813f53219f62cdb97504c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -282,7 +281,7 @@ pitch</td>
 <td class="fielddoc">
 number of bytes per row </td></tr>
 <tr><td class="fieldtype">
-<a class="anchor" id="adad71f5e4ab985bb68267347bc2b87f8"></a>Color *</td>
+<a class="anchor" id="adad71f5e4ab985bb68267347bc2b87f8"></a><a class="el" href="namespaceScreen.html#abd5f4375173581f8bb4617628d1ad517">Color</a> *</td>
 <td class="fieldname">
 pixels</td>
 <td class="fielddoc">
@@ -370,7 +369,7 @@ start Y position (not used) </td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Dec 20 2014 05:14:01 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Dec 20 2014 15:44:51 for JOS-RPi by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.8
 </small></address>
