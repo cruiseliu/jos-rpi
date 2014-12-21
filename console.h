@@ -35,7 +35,7 @@ namespace Console {
     /// @endcode
     void putc(int ch);
 
-    /// @brief Get a character from user.
+    /// @brief Get a character from user and echo it back.
     ///
     /// If a USB keyboard is plugged before booting, the keyboard will be used.
     /// Otherwise we will get a character from UART. Hot-plug is not supported.

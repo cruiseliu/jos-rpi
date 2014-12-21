@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <type_traits>
 
 /**
  * @brief Address/pointer type.
@@ -8,8 +9,8 @@
  * This class is designed for easy conversation between address and pointer
  * with zero overhead.
  *
- * Because the constructors are not inlined so well (especially for constants),
- * we will use initializer lists (brace initializer) instead. For example:
+ * Because we want a POD class, use initializer list (brace initializer)
+ * instead of constructors. For example:
  * @code
  *     const Addr entry_addr = { 0x8000 };
  *     uint32_t mail = mmio_read({0x2000b880});
@@ -17,16 +18,18 @@
  *
  * This class is highly under-development, only functions in use are provided.
  */
-struct Addr {
-    uint32_t m_addr;
+union Addr {
+    void operator-=(Addr a) { addr -= a.addr; }
+    uint32_t operator[](int idx) { return *((uint32_t *)(addr) + idx); }
+    explicit operator bool() { return addr; }
 
-    inline void operator-=(Addr a) { m_addr -= a.m_addr; }
-    inline uint32_t operator[](int idx) { return *((uint32_t *)(m_addr) + idx); }
-    explicit inline operator bool() { return m_addr; }
+    uint32_t addr;
 };
 
-static inline bool operator< (Addr a1, Addr a2) { return a1.m_addr <  a2.m_addr; }
-static inline bool operator> (Addr a1, Addr a2) { return a1.m_addr >  a2.m_addr; }
-static inline bool operator<=(Addr a1, Addr a2) { return a1.m_addr <= a2.m_addr; }
-static inline bool operator>=(Addr a1, Addr a2) { return a1.m_addr >= a2.m_addr; }
-static inline bool operator==(Addr a1, Addr a2) { return a1.m_addr == a2.m_addr; }
+static inline bool operator< (Addr a1, Addr a2) { return a1.addr <  a2.addr; }
+static inline bool operator> (Addr a1, Addr a2) { return a1.addr >  a2.addr; }
+static inline bool operator<=(Addr a1, Addr a2) { return a1.addr <= a2.addr; }
+static inline bool operator>=(Addr a1, Addr a2) { return a1.addr >= a2.addr; }
+static inline bool operator==(Addr a1, Addr a2) { return a1.addr == a2.addr; }
+
+static_assert(std::is_pod<Addr>::value, "Addr is not POD");

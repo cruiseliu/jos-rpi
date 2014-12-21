@@ -32,17 +32,19 @@ char * readline(const char *prompt)
     int len = 0;
     while (true) {
         char ch = getchar();
-        // The UART will send us a \x7f (delete) when we press backspace
-        if (ch == '\x7f') ch = '\b';
-        // Always echo
-        putchar(ch);
-
-        if (ch == '\n') {
+        switch (ch) {
+        case '\n':
             buf[len] = '\0';
             return buf;
-        } else if (ch == '\b') {
-            --len;
-        } else {
+
+        // UART will send us a \x7f (delete) when we press backspace
+        case '\x7f':
+        case '\b':
+            if (len > 0)
+                --len;
+            break;
+
+        default:
             buf[len++] = ch;
         }
     }

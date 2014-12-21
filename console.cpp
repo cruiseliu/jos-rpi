@@ -25,6 +25,9 @@ namespace Console {
     static int row, col;
     //@}
 
+    /// '\b' can only delete characters after barrier.
+    static int barrier;
+
     /// Whether or not a keyboard is plugged before booting
     static bool keyboard_avail;
 
@@ -42,6 +45,7 @@ namespace Console {
         // Put cursor below the logo
         row = Screen::logo_height / Screen::line_height + 1;
         col = 0;
+        barrier = 0;
 
         Screen::paint_cursor(row, col);
     }
@@ -75,7 +79,7 @@ namespace Console {
             case '\b': // backspace
                 // Clear the cursor
                 Screen::clear_char(row, col);
-                if (col > 0)
+                if (col > barrier)
                     --col;
                 // Deleted character is covered by cursor
                 break;
@@ -135,7 +139,7 @@ namespace Console {
         Screen::gray
     };
 
-    void putc(int ch)
+    static void putc_no_barrier(int ch)
     {
         // Linux terminals can handle escape and control charaters better than us
         UART::putc(ch);
@@ -187,18 +191,26 @@ namespace Console {
             putc_no_escape(ch);
     }
 
+    void putc(int ch)
+    {
+        putc_no_barrier(ch);
+        barrier = col;
+    }
+
     int getc()
     {
-        // Keyboard not plugged, use UART
-        if (!keyboard_avail)
-            return UART::getc();
-
-        // Wait for a keystroke
         int ret;
-        do { 
-            KeyboardUpdate();
-            ret = KeyboardGetChar();
-        } while (ret == 0);
+        if (!keyboard_avail) {
+            // Keyboard not plugged, use UART
+            ret = UART::getc();
+        } else {
+            // Wait for a keystroke
+            do { 
+                KeyboardUpdate();
+                ret = KeyboardGetChar();
+            } while (ret == 0);
+        }
+        putc_no_barrier(ret); // echo
         return ret;
     }
 }

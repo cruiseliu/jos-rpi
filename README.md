@@ -15,7 +15,7 @@ If you have a Raspberry Pi with Raspbian, copy `kernel.img` to the boot partitio
     framebuffer_depth=32
     fraembuffer_ignore_alpha=1
 
-You can either connect your RPi's UART port to computer and use it as a TTY, or use it directly by HDMI display and USB keyboard.
+You can either connect your RPi's UART port to computer as a TTY, or use it directly by HDMI display and USB keyboard.
 Please note that UART input is disabled when a keyboard is found.
 
 You may use [raspbootin](https://github.com/mrvn/raspbootin) to simplify UART configuration.
