@@ -1,6 +1,6 @@
 #pragma once
 
-#include "addr.h"
+#include <cstdint>
 
 /**
  * @brief Get debug information of a program counter from stabs.
@@ -25,7 +25,7 @@
 class DebugInfo {
 public:
     /// Prepare the infomation, note that the parameter is pc rather than lr.
-    DebugInfo(uint32_t pc);
+    DebugInfo(uintptr_t pc);
 
     /// Print all information to stdout.
     void show();
@@ -35,7 +35,7 @@ private:
     int line;         ///< Source code line number for pc
     const char *func; ///< Name of function containing pc, not null terminated
     int func_len;     ///< Length of function name
-    Addr addr;        ///< Offset from start of function
+    uintptr_t addr;   ///< Offset from start of function
 
     bool valid;       ///< Whether or not the debug information is valid
     bool is_asm;      ///< Whether or not this is an assembly file

@@ -26,25 +26,26 @@
 
 #include "uart.h"
 #include "arm.h"
+#include <cstddef>
 
 namespace UART {
     const uint32_t gpio_base = 0x20200000;
 
     // Controls actuation of pull up/down to ALL GPIO pins.
-    const Addr gppud     = { gpio_base + 0x94 };
+    const uintptr_t gppud     = gpio_base + 0x94;
     // Controls actuation of pull up/down for specific GPIO pin.
-    const Addr gppudclk0 = { gpio_base + 0x98 };
+    const uintptr_t gppudclk0 = gpio_base + 0x98;
 
     const uint32_t uart0_base = 0x20201000;
 
-    const Addr uart0_dr   = { uart0_base + 0x00 };
-    const Addr uart0_fr   = { uart0_base + 0x18 };
-    const Addr uart0_ibrd = { uart0_base + 0x24 };
-    const Addr uart0_fbrd = { uart0_base + 0x28 };
-    const Addr uart0_lcrh = { uart0_base + 0x2c };
-    const Addr uart0_cr   = { uart0_base + 0x30 };
-    const Addr uart0_imsc = { uart0_base + 0x38 };
-    const Addr uart0_icr  = { uart0_base + 0x44 };
+    const uintptr_t uart0_dr   = uart0_base + 0x00;
+    const uintptr_t uart0_fr   = uart0_base + 0x18;
+    const uintptr_t uart0_ibrd = uart0_base + 0x24;
+    const uintptr_t uart0_fbrd = uart0_base + 0x28;
+    const uintptr_t uart0_lcrh = uart0_base + 0x2c;
+    const uintptr_t uart0_cr   = uart0_base + 0x30;
+    const uintptr_t uart0_imsc = uart0_base + 0x38;
+    const uintptr_t uart0_icr  = uart0_base + 0x44;
 
     /// Delay given cycles.
     // Must not be static or inline!

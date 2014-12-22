@@ -1,25 +1,13 @@
-#include "stdio.h"
+#include "test.h"
 #include "console.h"
 #include "monitor.h"
-
-void test_backtrace(int x)
-{
-    printf("entering test_backtrace %d\n", x);
-    if (x > 0)
-        test_backtrace(x - 1);
-    else
-        Monitor::backtrace(0, nullptr);
-    printf("leaving test_backtrace %d\n", x);
-}
 
 extern "C"
 void kernel_main()
 {
     Console::init();
 
-    test_backtrace(5);
-
-    printf(CBLU "6828 decimal is %o octal!\n" CEND, 6828);
+    Test::lab2();
 
     Monitor::run();
 }

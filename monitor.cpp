@@ -1,5 +1,6 @@
 #include "monitor.h"
 #include "kdebug.h"
+#include "addr.h"
 #include "stdio.h"
 #include "string.h"
 #include <cstdint>
@@ -66,7 +67,7 @@ namespace Monitor {
     int backtrace(int argc, char *argv[])
     {
         // A new way to get register value
-        register uint32_t reg_fp asm ("fp");
+        register uintptr_t reg_fp asm ("fp");
         Addr fp {reg_fp};
 
         for (; fp; fp = {fp[-1]}) {

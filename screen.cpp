@@ -1,5 +1,4 @@
 #include "screen.h"
-#include "addr.h"
 #include "arm.h"
 
 typedef uint32_t Bitset;
@@ -10,11 +9,11 @@ namespace Mailbox {
     const uint32_t base_addr = 0x2000b880;
 
     /// The port to receive message
-    const Addr read_port   = { base_addr + 0x00 };
+    const uintptr_t read_port   = base_addr + 0x00;
     /// The port to check status
-    const Addr status_port = { base_addr + 0x18 };
+    const uintptr_t status_port = base_addr + 0x18;
     /// The port to send message
-    const Addr write_port  = { base_addr + 0x20 };
+    const uintptr_t write_port  = base_addr + 0x20;
 
     /// This bit indicating the mailbox is empty
     const Bitset empty = 1 << 30;

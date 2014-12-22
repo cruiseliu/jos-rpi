@@ -18,7 +18,7 @@
  *
  * This class is highly under-development, only functions in use are provided.
  */
-union Addr {
+struct Addr {
     void operator-=(Addr a) { addr -= a.addr; }
     uint32_t operator[](int idx) { return *((uint32_t *)(addr) + idx); }
     explicit operator bool() { return addr; }
