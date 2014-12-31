@@ -5,7 +5,8 @@
 extern "C"
 void kernel_main()
 {
-    Console::init();
+    //Console::init();
+    Console::init(Console::no_keyboard);
 
     Test::lab2();
 

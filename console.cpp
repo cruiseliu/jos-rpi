@@ -31,13 +31,15 @@ namespace Console {
     /// Whether or not a keyboard is plugged before booting
     static bool keyboard_avail;
 
-    void init()
+    void init(bool use_keyboard)
     {
         UART::init();
         Screen::init();
 
-        UsbInitialise();
-        keyboard_avail = KeyboardCount();
+        if (use_keyboard) {
+            UsbInitialise();
+            keyboard_avail = KeyboardCount();
+        }
 
         height = Screen::height / Screen::line_height;
         width  = Screen::width  / Screen::font_width;
@@ -76,14 +78,6 @@ namespace Console {
     static void putc_no_escape(int ch)
     {
         switch (ch) {
-            case '\b': // backspace
-                // Clear the cursor
-                Screen::clear_char(row, col);
-                if (col > barrier)
-                    --col;
-                // Deleted character is covered by cursor
-                break;
-
             case '\t': // tab
                 // I don't like tab, just print up to 8 spaces
                 col += 8;
@@ -139,8 +133,24 @@ namespace Console {
         Screen::gray
     };
 
-    static void putc_no_barrier(int ch)
+    /// Print a character without setting barrier.
+    static void putc_deletable(int ch)
     {
+        if (ch == '\b' || ch == '\x7f') { // backspace or delete
+            if (col > barrier) {
+                // Sometimes UART only move the cursor without wiping character for backspace, so
+                // we move the cursor, print a space to cover the character, and move cursor back.
+                UART::putc('\b');
+                UART::putc(' ');
+                UART::putc('\b');
+
+                // Clear the cursor and print it at left, covering the deleted character.
+                Screen::clear_char(row, col);
+                Screen::paint_cursor(row, --col);
+            }
+            return;
+        }
+
         // Linux terminals can handle escape and control charaters better than us
         UART::putc(ch);
 
@@ -193,7 +203,7 @@ namespace Console {
 
     void putc(int ch)
     {
-        putc_no_barrier(ch);
+        putc_deletable(ch);
         barrier = col;
     }
 
@@ -210,7 +220,7 @@ namespace Console {
                 ret = KeyboardGetChar();
             } while (ret == 0);
         }
-        putc_no_barrier(ret); // echo
+        putc_deletable(ret); // echo
         return ret;
     }
 }

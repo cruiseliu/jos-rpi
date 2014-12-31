@@ -20,8 +20,10 @@
  */
 
 namespace Console {
+    const bool no_keyboard = false;
+
     /// Initialize the console (and underlying I/O devices)
-    void init();
+    void init(bool use_keyboard = true);
 
     /// @brief Output a character at current position.
     ///
@@ -33,11 +35,15 @@ namespace Console {
     /// @code
     ///     printf(CRED "Hello world!" CEND);
     /// @endcode
+    ///
+    /// Characters printed by putc will never be deleted.
     void putc(int ch);
 
     /// @brief Get a character from user and echo it back.
     ///
     /// If a USB keyboard is plugged before booting, the keyboard will be used.
     /// Otherwise we will get a character from UART. Hot-plug is not supported.
+    ///
+    /// Characters echoed by getc can be deleted by '\b' or '\x7f'.
     int getc();
 }
