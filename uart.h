@@ -25,11 +25,17 @@
 
 namespace UART {
     /// @brief Initialize UART0.
-    void init(void);
+    void init();
 
     /// @brief Transmit a byte via UART0.
     void putc(int byte);
 
     /// @brief Receive a byte via UART0.
-    int getc(void);
+    int getc();
+
+    /// @brief Transmit a string.
+    void puts(const char *str);
+
+    /// @brief Transmit a hex number in string form.
+    void putx(uint32_t num);
 }

@@ -114,4 +114,18 @@ namespace UART {
 	}
 	return mmio_read(uart0_dr);
     }
+
+    void puts(const char *str)
+    {
+        for (; *str; ++str)
+            putc(*str);
+    }
+
+    void putx(uint32_t num)
+    {
+        const char digits[] = "0123456789abcdef";
+        for (int i = 28; i >= 0; i -= 4)
+            putc(digits[(num >> i) & 0xf]);
+        putc('\n');
+    }
 }

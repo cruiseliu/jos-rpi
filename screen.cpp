@@ -1,6 +1,8 @@
 #include "screen.h"
 #include "arm.h"
 
+//#include "uart.h"
+
 typedef uint32_t Bitset;
 
 /// @brief The mechanism used to trasferring data between CPU and GPU
@@ -143,6 +145,7 @@ namespace Screen {
     /// Paint the logo defined in logo.cpp
     static inline void paint_logo()
     {
+        //UART::putx((uint32_t)fb.pixels); // where should we map this?
         for (int i = 0; i < logo_height; ++i)
             for (int j = 0; j < logo_width; ++j)
                 set_pixel(i, j, logo[i][j]);

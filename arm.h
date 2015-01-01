@@ -7,6 +7,11 @@
  * ARM instructions.
  */
 
+static inline void store(uintptr_t addr, uint32_t data)
+{
+    asm volatile("str %[reg], [%[addr]]" : : [addr]"r"(addr), [reg]"r"(data));
+}
+
 /// Store data to addr (str), this name is for readability.
 static inline void mmio_write(uintptr_t addr, uint32_t data)
 {
