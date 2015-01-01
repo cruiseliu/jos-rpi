@@ -36,21 +36,21 @@ namespace Monitor {
     }
 
     extern "C" {
-        extern const char _start[], __start[], __end[];
+        //extern const char _start[], __start[], __end[];
         extern const char __text_start[], __rodata_start[], __data_start[], __bss_start[];
     }
 
     int kerninfo(int argc, char *argv[])
     {
         puts  ("Special kernel symbols:");
-        printf("  _start %08x\n", _start);
+        //printf("  _start %08x\n", _start);
         printf("  text   %08x\n", __text_start);
         printf("  rodata %08x\n", __rodata_start);
         printf("  data   %08x\n", __data_start);
         printf("  bss    %08x\n", __bss_start);
-        printf("  end    %08x\n", __end);
+        //printf("  end    %08x\n", __end);
         // It's not rounded up, this minus error should be acceptable.
-        printf("Kernel executable memory footprint: %dKB\n", (__end - __start) / 1024);
+        //printf("Kernel executable memory footprint: %dKB\n", (__end - __start) / 1024);
         return 0;
     }
 

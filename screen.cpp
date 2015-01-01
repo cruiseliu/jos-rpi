@@ -1,14 +1,14 @@
 #include "screen.h"
 #include "arm.h"
-
-//#include "uart.h"
+#include "memlayout.h"
+#include "stdio.h"
 
 typedef uint32_t Bitset;
 
 /// @brief The mechanism used to trasferring data between CPU and GPU
 namespace Mailbox {
     /// The base address of mailbox MMIO
-    const uint32_t base_addr = 0x2000b880;
+    const uintptr_t base_addr = peri_vaddr(0x2000b880);
 
     /// The port to receive message
     const uintptr_t read_port   = base_addr + 0x00;
@@ -106,7 +106,8 @@ namespace Screen {
     /// The framebuffer information should be send on mailbox channel 1
     const int gpu_mailbox = 1;
 
-    /// Set the 30th bit to flush screen, said by [2]
+    /// Set the 30th bit to flush screen, said by [2].
+    /// Seems like this is caused by GPU's MMU.
     // TODO: What will happen if we use a high address for the kernel?
     const Bitset gpu_flush = 0x40000000;
 
@@ -119,13 +120,21 @@ namespace Screen {
         fb.ph = fb.vh = height;
         fb.depth = depth;
 
+        fprintf(stderr, "framebuffer initialized to %08x\n", fb.pixels);
+
         // Send it to GPU
-        Mailbox::send(gpu_mailbox, (Bitset)&fb | gpu_flush);
+        Mailbox::send(gpu_mailbox, paddr(&fb) + gpu_flush);
 
         // [2] says GPU returns 0 on success, but [1] doesn't agree.
         // I chose to believe [2], it seems to work out fine.
-        if (Mailbox::receive(gpu_mailbox) != 0)
+        uint32_t ret = Mailbox::receive(gpu_mailbox);
+        if (ret != 0) {
+            //fprintf(stderr, "received %x\n", ret);
             while (true) { } // something wrong, stuck
+        }
+
+        // FIXME: hard-coded framebuffer address!
+        fprintf(stderr, "framebuffer address: %08x ~ %08x\n", fb.pixels, fb.pixels + width * height);
 
         paint_logo();
     }
@@ -145,7 +154,6 @@ namespace Screen {
     /// Paint the logo defined in logo.cpp
     static inline void paint_logo()
     {
-        //UART::putx((uint32_t)fb.pixels); // where should we map this?
         for (int i = 0; i < logo_height; ++i)
             for (int j = 0; j < logo_width; ++j)
                 set_pixel(i, j, logo[i][j]);

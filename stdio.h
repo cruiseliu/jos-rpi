@@ -29,6 +29,7 @@ struct FILE {
 
 extern FILE * const stdin;
 extern FILE * const stdout;
+extern FILE * const stderr;
 
 static inline int getchar()
 {
@@ -57,7 +58,7 @@ static inline void fputs(const char *s, FILE *stream)
 }
 
 int printf(const char *format, ...);
-
+int fprintf(FILE *stream, const char *format, ...);
 int vfprintf(FILE *stream, const char *format, va_list ap);
 
 // Not a stdio function in fact

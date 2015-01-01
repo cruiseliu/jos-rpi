@@ -5,9 +5,11 @@
 // Because we only have kernel, just crash if write to stdin or read from stdout
 static FILE file_stdin  = { nullptr, Console::getc };
 static FILE file_stdout = { Console::putc, nullptr };
+static FILE file_stderr = { UART::putc, nullptr };
 
 FILE * const stdin  = &file_stdin;
 FILE * const stdout = &file_stdout;
+FILE * const stderr = &file_stderr;
 
 int printf(const char *format, ...)
 {
@@ -16,6 +18,18 @@ int printf(const char *format, ...)
 
     va_start(arg, format);
     ret = vfprintf(stdout, format, arg);
+    va_end(arg);
+
+    return ret;
+}
+
+int fprintf(FILE *stream, const char *format, ...)
+{
+    va_list arg;
+    int ret;
+
+    va_start(arg, format);
+    ret = vfprintf(stream, format, arg);
     va_end(arg);
 
     return ret;

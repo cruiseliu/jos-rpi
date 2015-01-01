@@ -1,61 +1,54 @@
 ENTRY(_start)
 
-SECTIONS
-{
-    . = 0x8000;
-    __start = .;
+MEMORY {
+    boot : org = 0x8000, len = 1M
+    kernel : org = 0xf0000000, len = 1M
+}
 
-    __text_start = .;
-    .text :
-    {
-        KEEP(*(.text.boot))
-        *(.text)
-    }
-    . = ALIGN(4096);
-    __text_end = .;
+SECTIONS {
+    .init : {
+        build/boot.o(.text* .data* .bss* .rodata*)
+    } >boot
 
-    __rodata_start = .;
-    .rodata :
-    {
-        *(.rodata)
-    }
-    . = ALIGN(4096);
-    __rodata_end = .;
+    __boot_end = ALIGN(4k);
 
-    __stab_start = .;
-    .stab :
-    {
+    .text (__boot_end + 0xf0000000) : AT(__boot_end) {
+        __text_start = ABSOLUTE(.);
+        *(.text*)
+        __text_end = ABSOLUTE(.);
+    } >kernel
+
+    .rodata : {
+        __rodata_start = ABSOLUTE(.);
+        *(.rodata*)
+        __rodata_end = ABSOLUTE(.);
+    } >kernel
+
+    .stab : {
+        __stab_start = ABSOLUTE(.);
         *(.stab);
         BYTE(0)
-    }
-    __stab_end = .;
+        __stab_end = ABSOLUTE(.);
+    } >kernel
 
-    __stabstr_start = .;
-    .stabstr :
-    {
+    .stabstr : {
+        __stabstr_start = ABSOLUTE(.);
         *(.stabstr);
         BYTE(0)
-    }
-    __stabstr_end = .;
+        __stabstr_end = ABSOLUTE(.);
+    } >kernel
 
-    . = ALIGN(4096);
+    . = ALIGN(4k);
 
-    __data_start = .;
-    .data :
-    {
+    .data : {
+        __data_start = ABSOLUTE(.);
         *(.data)
-    }
-    . = ALIGN(4096);
-    __data_end = .;
+        __data_end = ABSOLUTE(.);
+    } >kernel
 
-    __bss_start = .;
-    .bss :
-    {
-        bss = .;
+    .bss : {
+        __bss_start = ABSOLUTE(.);
         *(.bss)
-    }
-    . = ALIGN(4096);
-    __bss_end = .;
-
-    __end = .;
+        __bss_end = ABSOLUTE(.);
+    } >kernel
 }

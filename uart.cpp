@@ -26,17 +26,18 @@
 
 #include "uart.h"
 #include "arm.h"
+#include "memlayout.h"
 #include <cstddef>
 
 namespace UART {
-    const uint32_t gpio_base = 0x20200000;
+    const uintptr_t gpio_base = peri_vaddr(0x20200000);
 
     // Controls actuation of pull up/down to ALL GPIO pins.
     const uintptr_t gppud     = gpio_base + 0x94;
     // Controls actuation of pull up/down for specific GPIO pin.
     const uintptr_t gppudclk0 = gpio_base + 0x98;
 
-    const uint32_t uart0_base = 0x20201000;
+    const uintptr_t uart0_base = gpio_base + 0x1000;
 
     const uintptr_t uart0_dr   = uart0_base + 0x00;
     const uintptr_t uart0_fr   = uart0_base + 0x18;
