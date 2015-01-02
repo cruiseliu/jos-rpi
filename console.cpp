@@ -91,11 +91,6 @@ namespace Console {
                 new_line();
                 break;
 
-            case '\r': // ???
-                // FIXME: I don't know the exact behaviour of \r
-                col = 0;
-                break;
-
             default:
                 // unsupported control code
                 if (ch < max_control)
@@ -138,7 +133,7 @@ namespace Console {
     /// Print a character without setting barrier.
     static void putc_deletable(int ch)
     {
-        if (ch == '\b' || ch == '\x7f') { // backspace or delete
+        if (ch == '\b') { // backspace or delete
             if (col > barrier) {
                 // Sometimes UART only move the cursor without wiping character for backspace, so
                 // we move the cursor, print a space to cover the character, and move cursor back.

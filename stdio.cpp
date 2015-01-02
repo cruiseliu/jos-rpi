@@ -51,8 +51,6 @@ char * readline(const char *prompt)
             buf[len] = '\0';
             return buf;
 
-        // UART will send us a \x7f (delete) when we press backspace
-        case '\x7f':
         case '\b':
             if (len > 0)
                 --len;

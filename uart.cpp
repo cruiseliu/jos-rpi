@@ -113,7 +113,11 @@ namespace UART {
 		break;
 	    }
 	}
-	return mmio_read(uart0_dr);
+	int ret = mmio_read(uart0_dr);
+
+        if (ret == '\x7f') return '\b';
+        if (ret == '\r')   return '\n';
+        return ret;
     }
 
     void puts(const char *str)

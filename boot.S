@@ -40,6 +40,22 @@ _start:
     ldr r9, mmu_addr8
     str r4, [r9]
 
+    ldr r4, mmu_data9
+    ldr r9, mmu_addr9
+    str r4, [r9]
+
+    ldr r4, mmu_data10
+    ldr r9, mmu_addr10
+    str r4, [r9]
+
+    ldr r4, mmu_data11
+    ldr r9, mmu_addr11
+    str r4, [r9]
+
+    ldr r4, mmu_data12
+    ldr r9, mmu_addr12
+    str r4, [r9]
+
     ldr r4, mmu_base
     ldr r9, mmu_flag
     mov r2, #0
@@ -105,25 +121,45 @@ mmu_addr4:
 .word 0x00103fc8
 
 @ FIXME: should not be hard-coded!
-mmu_data5: @ Framebuffer 0
+mmu_data5: @ RPi Framebuffer 0
 .word 0x5c000002
 mmu_addr5:
 .word 0x00101700
 
-mmu_data6: @ Framebuffer 1
+mmu_data6: @ RPi Framebuffer 1
 .word 0x5c100002
 mmu_addr6:
 .word 0x00101704
 
-mmu_data7: @ Framebuffer 2
+mmu_data7: @ RPi Framebuffer 2
 .word 0x5c200002
 mmu_addr7:
 .word 0x00101708
 
-mmu_data8: @ Framebuffer 3
+mmu_data8: @ RPi Framebuffer 3
 .word 0x5c300002
 mmu_addr8:
 .word 0x0010170c
+
+mmu_data9: @ QEMU Framebuffer 0
+.word 0x4c000002
+mmu_addr9:
+.word 0x00101300
+
+mmu_data10: @ QEMU Framebuffer 1
+.word 0x4c100002
+mmu_addr10:
+.word 0x00101304
+
+mmu_data11: @ QEMU Framebuffer 2
+.word 0x4c200002
+mmu_addr11:
+.word 0x00101308
+
+mmu_data12: @ QEMU Framebuffer 3
+.word 0x4c300002
+mmu_addr12:
+.word 0x0010130c
 
 mmu_base:
 .word 0x00100000

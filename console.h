@@ -44,6 +44,6 @@ namespace Console {
     /// If a USB keyboard is plugged before booting, the keyboard will be used.
     /// Otherwise we will get a character from UART. Hot-plug is not supported.
     ///
-    /// Characters echoed by getc can be deleted by '\b' or '\x7f'.
+    /// Characters echoed by getc can be deleted by '\b' (or '\x7f').
     int getc();
 }
