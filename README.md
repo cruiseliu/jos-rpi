@@ -40,7 +40,10 @@ Roadmap
     * ~~Colorful output~~
 
   * Lab 2
-    * High address
+    * ~~High address~~
+    * MMU utils
+    * Free pages management
+    * Buddy system
     * ......
 
 TODO

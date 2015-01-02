@@ -2,34 +2,58 @@
 #include "arm.h"
 #include "memlayout.h"
 #include "stdio.h"
+#include "common.h"
 
 typedef uint32_t Bitset;
 
-/// @brief The mechanism used to trasferring data between CPU and GPU
+/**
+ * @brief The mechanism used to trasferring data between CPU and GPU.
+ *
+ * The GPU has several pre-defined mailbox channels for various purpose, including framebuffer
+ * access, which uses channel 1. It seems like Raspberry Pi has more than one mailboxes, but we are
+ * only concerned with the first one.
+ *
+ * Implementation details:
+ *
+ * A mailbox has up to 6 MMIO ports, 3 of them (read, write, status) are needed for our purpose.
+ * Each port is shared by all channels, so we must specify the channel ID in lowest 4 bits while
+ * writing a word to MMIO ports. Likewise, when we read a word it contains channel ID in the same
+ * bits.
+ *
+ * This means there are at most 15 channels, and all "mails" are multiple of 16.
+ *
+ * To send a mail, query the status port until it's not full (bit 31 is 0), then write data and
+ * channel to write port.
+ *
+ * To receive a mail, query the status port until it's not empty (bit 30 is 0), then read a word
+ * from read port. If it does not contain expected channel ID, just ignore it and get another mail.
+ *
+ * [Official description](https://github.com/raspberrypi/firmware/wiki/Accessing-mailboxes).
+ */
 namespace Mailbox {
     /// The base address of mailbox MMIO
-    const uintptr_t base_addr = peri_vaddr(0x2000b880);
+    const VAddr base_addr = peri_vaddr(0x2000b880);
 
     /// The port to receive message
-    const uintptr_t read_port   = base_addr + 0x00;
+    const VAddr read_port   = base_addr + 0x00;
     /// The port to check status
-    const uintptr_t status_port = base_addr + 0x18;
+    const VAddr status_port = base_addr + 0x18;
     /// The port to send message
-    const uintptr_t write_port  = base_addr + 0x20;
+    const VAddr write_port  = base_addr + 0x20;
 
     /// This bit indicating the mailbox is empty
-    const Bitset empty = 1 << 30;
+    const Word empty = 1 << 30;
     /// This bit indicating the mailbox is full
-    const Bitset full  = 1 << 31;
+    const Word full  = 1 << 31;
 
-    /// The last 3 bits of a "mail" is the channel
-    const Bitset channel_mask = 0xf;
+    /// The last 4 bits of a "mail" is the channel
+    const Word channel_mask = 0xf;
     /// Thus only 15 channels are available
     const int max_channel = 15;
 
     /// Send data to channel.
-    /// The last 3 bits of data must be 0.
-    static inline void send(uint32_t channel, uint32_t data)
+    /// The last 4 bits of data must be 0.
+    static inline void send(Word channel, Word data)
     {
         // Validate the channel
         if ((data & channel_mask) || (channel > max_channel)) return;
@@ -43,12 +67,12 @@ namespace Mailbox {
 
     /// Receive data from channel.
     /// Drop any messages from other channels. Return -1 on fail.
-    static inline uint32_t receive(uint32_t channel)
+    static inline Word receive(Word channel)
     {
         // Validate the channel
         if (channel > max_channel) return -1;
 
-        uint32_t data;
+        Word data;
 
         // Check a mail, if it's not from channel, check another one
         do {
@@ -63,15 +87,21 @@ namespace Mailbox {
     }
 }
 
+/**
+ * Implementation details:
+ *
+ * The VGA text-mode used by JOS is a PC specific feature, thus not available for RPi or any other
+ * ARM platforms. So we have to use framebuffer even for most basic text console. Fortunately there
+ * are some good documentations:
+ *
+ * * [1] [quick reference](http://elinux.org/RPi_Framebuffer)
+ * * [2] [assembly tutorial](http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/)
+ */
 namespace Screen {
     /**
-     * \brief Information of the framebuffer
-     *
-     * To initialize GPU, send it a pointer of Framebuffer with some fields
-     * filled in via mailbox. The GPU will set the rest members, including
-     * pointer to the "real" framebuffer (pixels).
+     * @brief Information of the framebuffer
      */
-    struct Framebuffer {
+    struct FramebufferInfo {
         /// physical width
         int32_t pw;
         /// physical height
@@ -93,48 +123,59 @@ namespace Screen {
         /// start Y position (not used)
         int32_t y;
 
-        /// pointer to the framebuffer
-        Color *pixels;
+        /// physical address to the framebuffer
+        PAddr paddr;
 
         /// size of the framebuffer
         uint32_t size;
     };
 
-    /// The framebuffer, alignment is required by mailbox.
-    static Framebuffer fb __attribute__((aligned(16)));
+    /// Framebuffer information, alignment is required by mailbox.
+    static FramebufferInfo fb_info __attribute__((aligned(16)));
 
-    /// The framebuffer information should be send on mailbox channel 1
+    /// Framebuffer information should be send on mailbox channel 1.
     const int gpu_mailbox = 1;
 
-    /// Set the 30th bit to flush screen, said by [2].
-    /// Seems like this is caused by GPU's MMU.
-    // TODO: What will happen if we use a high address for the kernel?
-    const Bitset gpu_flush = 0x40000000;
+    /// It seems like that the MMU of GPU has mapped addresses above 0x40000000 as not cached. Add
+    /// this to the address of framebuffer will cause GPU to flush as soon as the framebuffer
+    /// updated. But it might degrade performance. (To be confirmed)
+    const VAddr gpu_flush = 0x40000000;
+
+    /// The framebuffer.
+    Color *fb;
 
     static inline void paint_logo();
 
+    /// Implementation details:
+    ///
+    /// Fill the settings in a FramebufferInfo object and send it's physical address to GPU by
+    /// mailbox. GPU will fill in its rest fields including the physical address of framebuffer,
+    /// and send a mail back with content 0 if no error occurred.
+    ///
+    /// Once set up, we can write RGB value of each pixel to corresponding virtual address and
+    /// display colors. We can also read them back.
     void init()
     {
         // Configure framebuffer
-        fb.pw = fb.vw = width;
-        fb.ph = fb.vh = height;
-        fb.depth = depth;
-
-        fprintf(stderr, "framebuffer initialized to %08x\n", fb.pixels);
+        fb_info.pw = fb_info.vw = width;
+        fb_info.ph = fb_info.vh = height;
+        fb_info.depth = depth;
 
         // Send it to GPU
-        Mailbox::send(gpu_mailbox, paddr(&fb) + gpu_flush);
+        Mailbox::send(gpu_mailbox, paddr(&fb_info) + gpu_flush);
 
-        // [2] says GPU returns 0 on success, but [1] doesn't agree.
-        // I chose to believe [2], it seems to work out fine.
-        uint32_t ret = Mailbox::receive(gpu_mailbox);
+        // Did it succeed?
+        Word ret = Mailbox::receive(gpu_mailbox);
         if (ret != 0) {
             //fprintf(stderr, "received %x\n", ret);
             while (true) { } // something wrong, stuck
         }
 
-        // FIXME: hard-coded framebuffer address!
-        fprintf(stderr, "framebuffer address: %08x ~ %08x\n", fb.pixels, fb.pixels + width * height);
+        // Map framebuffer to virtual address
+        PAddr pbase = round_down(fb_info.paddr, page_size);
+        mem_map(framebuffer_vbase, pbase, fb_info.paddr + fb_info.size);
+
+        fb = (Color *) (fb_info.paddr - pbase + framebuffer_vbase);
 
         paint_logo();
     }
@@ -142,13 +183,13 @@ namespace Screen {
     /// Get the color of pixel at (row,col).
     static inline Color get_pixel(int row, int col)
     {
-        return fb.pixels[row * width + col];
+        return fb[row * width + col];
     }
 
     /// Set the pixel at (row,col) to given color.
     static inline void set_pixel(int row, int col, Color color)
     {
-        fb.pixels[row * width + col] = color;
+        fb[row * width + col] = color;
     }
 
     /// Paint the logo defined in logo.cpp

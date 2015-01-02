@@ -3,3 +3,4 @@ kernel.img
 build/
 tags
 tmp/
+*~

@@ -3,15 +3,13 @@
 #include <cstdint>
 
 /**
- * @brief The RPi graphic system.
+ * @brief The Raspberry Pi graphic system.
  *
- * The VGA text-mode used by JOS is a PC specific feature, thus not available
- * for RPi or any other ARM platforms. So we have to use framebuffer even for
- * most basic text console. Fortunately I have found some good documentations
- * on the web.
+ * Because we are using framebuffer (don't worry about this unless you want to touch implementation
+ * details), this system is much more flexible than JOS. You can write or clear characters at any
+ * position with any (24 bit) color you like. It even has the ability of displaying pictures.
  *
- * * [1] [quick reference](http://elinux.org/RPi_Framebuffer)
- * * [2] [step-by-step tutorial](http://www.cl.cam.ac.uk/projects/raspberrypi/tutorials/os/)
+ * Remember to call `init` before any other functions.
  */
 
 namespace Screen {
@@ -36,9 +34,10 @@ namespace Screen {
     /// Default foreground (text) color
     const Color foreground_color = gray;
 
-    /// @brief Set the framebuffer up.
-    /// The function will stuck if it fails,
-    /// and you will see the 4-color gradient screen.
+    /// @brief Set the screen up.
+    /// This will show a logo of `logo_height` pixels high at top, you may want to avoid
+    /// overlapping it.
+    /// If something wrong, the function will stuck and you will see the "rainbow" screen.
     void init();
 
     /// Paint a character at the given *text* row and column,
@@ -61,7 +60,7 @@ namespace Screen {
      * @name Screen settings
      *
      * The width and height are hard-coded. Maybe we can detect it by some way, but
-     * let's make it simple. The color depth is 32 bits with alpha disabled in
+     * let's keep it simple. The color depth is 32 bits with alpha disabled in
      * config.txt. We do not use 24 bit because the GPU reads framebuffer byte by
      * byte, so we can't use a simple data type to represents a 24 bit pixel.
      */
@@ -98,7 +97,7 @@ namespace Screen {
 
     /**
      * @name Logo
-     * The system will show a logo at the top-left corner after booting up.
+     * The system will show a logo at the top-left corner.
      */
     //@{
     const int logo_width  = 88;
@@ -107,5 +106,4 @@ namespace Screen {
     /// The bitmap logo defined in logo.cpp
     extern const Color logo[logo_height][logo_width];
     //@}
-
 }
