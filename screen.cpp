@@ -173,7 +173,7 @@ namespace Screen {
 
         // Map framebuffer to virtual address
         PAddr pbase = round_down(fb_info.paddr, page_size);
-        mem_map(framebuffer_vbase, pbase, fb_info.paddr + fb_info.size);
+        mem_map(framebuffer_vbase, pbase, fb_info.paddr + fb_info.size - pbase, pte_mmio);
 
         fb = (Color *) (fb_info.paddr - pbase + framebuffer_vbase);
 

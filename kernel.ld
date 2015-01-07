@@ -51,4 +51,6 @@ SECTIONS {
         *(.bss)
         __bss_end = ABSOLUTE(.);
     } >kernel
+
+    __end = ALIGN(4k);
 }

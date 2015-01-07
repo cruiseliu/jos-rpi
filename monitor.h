@@ -23,5 +23,12 @@ namespace Monitor {
 
     /// @brief Display the stack backtrace.
     int backtrace(int argc, char *argv[]);
+
+    int showmap(int argc, char *argv[]);
+    int alloc(int argc, char *argv[]);
+    int write(int argc, char *argv[]);
+    int read(int argc, char *argv[]);
+    int map(int argc, char *argv[]);
+    int unmap(int argc, char *argv[]);
     //@}
 }

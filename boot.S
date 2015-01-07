@@ -68,7 +68,7 @@ mmu_addr1:
 mmu_data13: @ low address
 .word 0x0010000e
 mmu_addr13:
-.word 0x00100004
+.word 0x00103fcc
 
 mmu_base:
 .word 0x00100000
