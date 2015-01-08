@@ -9,6 +9,7 @@ extern "C"
 void kernel_main()
 {
     Memory::init();
+
     Console::init(Console::no_keyboard);
 
     Monitor::run();

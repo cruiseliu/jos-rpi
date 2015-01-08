@@ -177,7 +177,7 @@ namespace Monitor {
                 putchar(addr[i]);
         else
             for (int i = 0; i < size; ++i)
-                printf("%2x ", addr[i]);
+                printf("%02x ", addr[i]);
         putchar('\n');
 
         return 0;
@@ -203,7 +203,7 @@ namespace Monitor {
             printf("Mapped virtual address %08x to physical address %08x\n", va, pa);
         } else {
             PAddr pa = atoi(argv[2], 16);
-            Memory::map_addr(va, pa);
+            Memory::map(va, pa);
         }
 
         return 0;

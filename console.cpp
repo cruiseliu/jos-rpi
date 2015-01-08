@@ -33,8 +33,6 @@ namespace Console {
 
     void init(bool use_keyboard)
     {
-        //keyboard_avail = false;
-
         UART::init();
         Screen::init();
 

@@ -27,6 +27,7 @@
 #include "uart.h"
 #include "arm.h"
 #include "memlayout.h"
+#include "memory.h"
 #include <cstddef>
 
 namespace UART {
@@ -56,6 +57,8 @@ namespace UART {
     }
     
     void init(void) {
+        Memory::map(peri_vbase, peri_pbase, peri_size, PTE::krw, PTE::mmio);
+
 	// Disable UART0.
 	mmio_write(uart0_cr, 0x00000000);
 	// Setup the GPIO pin 14 && 15.

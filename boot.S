@@ -1,39 +1,39 @@
 .globl _start
 
 _start:
+    @ Set up stack
     mov sp, #0x8000
     mov fp, #0
 
-    ldr r4, mmu_data0
-    ldr r9, mmu_addr0
-    str r4, [r9]
+    @ Map first 1MB to it self
+    mov r4, #0xe
+    mov r5, #0
+    str r4, [r5]
 
-    ldr r4, mmu_data1
-    ldr r9, mmu_addr1
-    str r4, [r9]
+    @ Map first 1MB to high address (0xf0000000)
+    mov r4, #0xe
+    mov r5, #0x3c00
+    str r4, [r5]
 
-    ldr r4, mmu_data13
-    ldr r9, mmu_addr13
-    str r4, [r9]
+    @ Clear TLB
+    mcr p15, 0, r4, c8, c7, 0
 
-    ldr r4, mmu_base
-    ldr r9, mmu_flag
-    mov r2, #0
+    @ Set to master of domain 0 (other domains not used)
+    mov r4, #3
+    mcr p15, 0, r4, c3, c0, 0
 
-    mcr p15, 0, r2, c7, c7, 0
-    mcr p15, 0, r2, c8, c7, 0
-
-    mvn r2, #0
-    mcr p15, 0, r2, c3, c0, 0
-
+    @ Set (temporary) page table at bottom of stack
+    mov r4, #0
+    mcr p15, 0, r4, c2, c0, 2
     mcr p15, 0, r4, c2, c0, 0
-    mcr p15, 0, r4, c2, c0, 1
 
-    mrc p15, 0, r2, c1, c0, 0
-    orr r2, r2, r9
-    mcr p15, 0, r2, c1, c0, 0
+    @ Turn on MMU
+    mrc p15, 0, r4, c1, c0, 0
+    orr r4, r4, #1            @ enable MMU
+    orr r4, r4, #0x00800000   @ ARMv6 mode
+    mcr p15, 0, r4, c1, c0, 0
 
-@ clear bss
+    @ clear bss
     ldr r4, =__bss_start
     ldr r9, =__bss_end
     mov r5, #0
@@ -47,31 +47,10 @@ _start:
     cmp r4, r9
     blo 1b
 
-@ load kernel_main
+    @ call C++ code
     ldr r3, =kernel_main
     blx r3
 
 halt:
     wfe
     b halt
-
-mmu_data0: @ low address
-.word 0x0000000e
-mmu_addr0:
-.word 0x00100000
-
-mmu_data1: @ high address
-.word 0x0000000e
-mmu_addr1:
-.word 0x00103c00
-
-mmu_data13: @ low address
-.word 0x0010000e
-mmu_addr13:
-.word 0x00103fcc
-
-mmu_base:
-.word 0x00100000
-
-mmu_flag:
-.word 0x00800001
